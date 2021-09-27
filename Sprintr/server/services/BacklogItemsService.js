@@ -37,7 +37,7 @@ class BacklogItemsService {
 
   async createBacklogItem(backlogItemData) {
     const backlogItem = await dbContext.BacklogItems.create(backlogItemData)
-    await backlogItem.populate('creator', 'name picture').execPopulate()
+    // await backlogItem.populate('creator', 'name picture').execPopulate()
     return backlogItem
   }
 

@@ -13,7 +13,7 @@ export const BacklogItemSchema = new Schema(
       required: [true, 'description?']
     },
     status: {
-      type: Number,
+      type: String,
       default: 0,
       enum: [
         'pending',
