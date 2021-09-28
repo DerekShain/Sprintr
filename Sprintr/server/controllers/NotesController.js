@@ -28,7 +28,7 @@ export class NotesController extends BaseController {
       const note = await notesService.getNoteById(req.params.noteId)
       res.send(note)
     } catch (error) {
-
+      next(error)
     }
   }
 

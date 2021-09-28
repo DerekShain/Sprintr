@@ -29,7 +29,7 @@ export class BacklogItemsController extends BaseController {
       const backlogItem = await backlogItemsService.getBacklogItemById(req.params.backlogItemId)
       res.send(backlogItem)
     } catch (error) {
-
+      next(error)
     }
   }
 
