@@ -11,4 +11,4 @@ class ProjectsService {
   }
 }
 
-export const projectService = new ProjectsService()
+export const projectsService = new ProjectsService()
