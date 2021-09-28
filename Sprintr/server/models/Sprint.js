@@ -13,9 +13,9 @@ export const SprintSchema = new Schema(
 )
 
 SprintSchema.virtual('sprint', {
-  localField: 'sprintId',
+  localField: 'projectId',
   foreignField: '_id',
-  ref: 'Sprint',
+  ref: 'Project',
   justOne: true
 })
 

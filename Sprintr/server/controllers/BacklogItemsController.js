@@ -5,14 +5,14 @@ import { logger } from '../utils/Logger.js'
 
 export class BacklogItemsController extends BaseController {
   constructor() {
-    super('api/projects')
+    super('api/backlog')
     this.router
-      .get('/:projectId/backlog', this.getBacklogItems)
+      .get('', this.getBacklogItems)
       .get('/:backlogItemId', this.getBacklogItem)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createBacklogItem)
-      .delete('/:projectId/backlog/:backlogItemId', this.removeBacklogItem)
-      .put('/:projectId/backlog/:backlogItemId', this.editBacklogItem)
+      .put('/:backlogItemId', this.editBacklogItem)
+      .delete('/:backlogItemId', this.removeBacklogItem)
   }
 
   async getBacklogItems(req, res, next) {

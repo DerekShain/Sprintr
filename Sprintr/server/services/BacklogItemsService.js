@@ -22,6 +22,7 @@ class BacklogItemsService {
     backlogItem.sprintId = backlogItemData.sprintId || backlogItem.sprintId
     backlogItem.creatorId = backlogItemData.creatorId || backlogItem.creatorId
     backlogItem.color = backlogItemData.color || backlogItem.color
+    backlogItem.id = backlogItemData.id || backlogItem.id
     await backlogItem.save()
     return backlogItem
   }
