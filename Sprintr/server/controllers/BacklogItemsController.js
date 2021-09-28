@@ -1,4 +1,5 @@
 import { backlogItemsService } from '../services/BacklogItemsService.js'
+import { sprintsService } from '../services/SprintsService.js'
 import BaseController from '../utils/BaseController.js'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { logger } from '../utils/Logger.js'
@@ -12,7 +13,7 @@ export class BacklogItemsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createBacklogItem)
       .put('/:backlogItemId', this.editBacklogItem)
-      // .put('/:sprintId', this.editBacklogItem)
+      // .put('/:backlogItemId', this.editSprint)
       .delete('/:backlogItemId', this.removeBacklogItem)
   }
 
@@ -58,6 +59,15 @@ export class BacklogItemsController extends BaseController {
   async editBacklogItem(req, res, next) {
     try {
       const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.userInfo.id, req.body)
+      res.send(backlogItem)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async editSprint(req, res, next) {
+    try {
+      const backlogItem = await sprintsService.editSprint(req.params.backlogItemId, req.userInfo.id, req.body)
       res.send(backlogItem)
     } catch (error) {
       next(error)
