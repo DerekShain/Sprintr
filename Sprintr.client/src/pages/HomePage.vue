@@ -1,9 +1,10 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
+  <div class=" flex-grow-1 d-flex flex-column">
+    <div class="card p-5 bg-white rounded elevation-3">
       <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#project-form">
         Create Project
       </button>
+      <ProjectCard v-for="p in projects" :key="p.id" :project="p" />
     </div>
   </div>
 
@@ -18,8 +19,25 @@
 </template>
 
 <script>
+import { computed, onMounted } from '@vue/runtime-core'
+import { projectsService } from '../services/ProjectsService'
+import Pop from '../utils/Pop'
+import { AppState } from '../AppState'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    onMounted(async() => {
+      try {
+        await projectsService.getProjects()
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
+    return {
+      projects: computed(() => AppState.projects),
+      project: computed(() => AppState.project)
+    }
+  }
 }
 </script>
 

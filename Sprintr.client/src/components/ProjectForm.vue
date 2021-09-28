@@ -31,12 +31,8 @@
 <script>
 import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
-import { reactive, ref } from '@vue/reactivity'
+import { ref } from '@vue/reactivity'
 import { projectsService } from '../services/ProjectsService.js'
-import { Project } from '../models/Project.js'
-import { useRouter } from 'vue-router'
-import { AppState } from '../AppState.js'
-import { computed, watchEffect } from '@vue/runtime-core'
 import { router } from '../router.js'
 
 export default {
