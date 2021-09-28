@@ -5,7 +5,7 @@
       <input type="text"
              class="form-control bg-light"
              name="body"
-             placeholder="Body"
+             placeholder="Name"
              v-model="editable.name"
              required
       >
@@ -15,7 +15,7 @@
       <input type="test"
              class="form-control bg-light"
              name="imgUrl"
-             placeholder="Img Url"
+             placeholder="description"
              v-model="editable.description"
              required
       >

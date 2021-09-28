@@ -10,9 +10,10 @@
 
 <script>
 import { AppState } from '../AppState.js'
-import { projectService } from '../services/ProjectsService.js'
+import { projectsService } from '../services/ProjectsService.js'
 import { Project } from '../models/Project.js'
 import Pop from '../utils/Pop.js'
+import { computed } from '@vue/runtime-core'
 
 export default {
   props: {
@@ -23,6 +24,9 @@ export default {
   },
   setup(props) {
     return {
+      account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
+      projects: computed(() => AppState.projects)
     }
   }
 }

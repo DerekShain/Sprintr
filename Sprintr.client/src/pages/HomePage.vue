@@ -6,6 +6,15 @@
       </button>
     </div>
   </div>
+
+  <Modal>
+    <template #modal-title>
+      <h4>Project Form</h4>
+    </template>
+    <template #modal-body>
+      <ProjectForm />
+    </template>
+  </Modal>
 </template>
 
 <script>

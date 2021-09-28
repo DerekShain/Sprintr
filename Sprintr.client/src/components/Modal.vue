@@ -1,5 +1,5 @@
 <template>
-  <div id="prjoect-form"
+  <div id="project-form"
        class="modal fade"
        role="dialog"
        tabindex="-1"
