@@ -9,6 +9,7 @@ class ProjectsService {
     const res = await api.post('api/projects', newProject)
     AppState.projects.push(new Project(res.data))
     logger.log('create project res', res)
+    return res.data.id
   }
 
   async getProjectById(projectId) {
