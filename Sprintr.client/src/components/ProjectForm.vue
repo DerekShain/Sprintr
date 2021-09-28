@@ -32,7 +32,7 @@
 import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
 import { ref } from '@vue/reactivity'
-import { }
+import { projectsService } from '../services/ProjectsService.js'
 
 export default {
   setup() {
