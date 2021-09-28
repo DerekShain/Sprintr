@@ -16,6 +16,7 @@ class TasksService {
       throw new Forbidden('You shall not pass!!!')
     }
     task.name = taskData.name || task.name
+    task.id = taskData.id || task.id
     task.weight = taskData.weight || task.weight
     task.projectId = taskData.projectId || task.projectId
     task.backlogItemId = taskData.backlogItemId || task.backlogItemId

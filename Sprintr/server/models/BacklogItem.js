@@ -3,46 +3,13 @@ const Schema = mongoose.Schema
 
 export const BacklogItemSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true
-      // minlength: 3,
-    },
-    description: {
-      type: String,
-      required: [true, 'description?']
-    },
-    status: {
-      type: String,
-      default: 0,
-      enum: [
-        'pending',
-        'in-progress',
-        'review',
-        'done'
-      ],
-      required: true
-    },
-    projectId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Project',
-      required: true
-    },
-    sprintId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Sprint',
-      required: true
-    },
-    // NOTE this is a relationship more here later
-    creatorId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Account',
-      required: true
-    },
-    color: {
-      type: String,
-      required: false
-    }
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    status: { type: String, default: 0, enum: ['pending', 'in-progress', 'review', 'done'], required: true },
+    projectId: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
+    sprintId: { type: Schema.Types.ObjectId, ref: 'Sprint', required: true },
+    creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
+    color: { type: String, required: false }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

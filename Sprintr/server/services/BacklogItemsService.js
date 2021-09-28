@@ -3,7 +3,7 @@ import { BadRequest, Forbidden } from '../utils/Errors.js'
 
 class BacklogItemsService {
   async getBacklogItemById(backlogItemId) {
-    const backlogItem = await dbContext.BacklogItems.findById(backlogItemId).populate('creator', 'name picture')
+    const backlogItem = await dbContext.BacklogItems.findById(backlogItemId)
     if (!backlogItem) {
       throw new BadRequest('invalid backlogItem id')
     }

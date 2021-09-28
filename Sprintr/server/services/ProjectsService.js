@@ -15,9 +15,8 @@ class ProjectsService {
     if (userId !== project.creatorId.toString()) {
       throw new Forbidden('You shall not pass!!!')
     }
-    project.name = projectData.name || project.name
+    project.name = projectData.name
     project.description = projectData.description || project.description
-    project.creatorId = projectData.creatorId || project.creatorId
     await project.save()
     return project
   }
@@ -25,7 +24,7 @@ class ProjectsService {
   async removeProject(projectId, userId) {
     const project = await this.getProjectById(projectId)
     if (userId !== project.creatorId.toString()) {
-      throw new Forbidden('You shall not pass!!!')
+      throw new Forbidden('go')
     }
     await project.remove()
     return project

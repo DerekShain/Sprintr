@@ -3,34 +3,12 @@ const Schema = mongoose.Schema
 
 export const TaskSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true
-    },
-    weight: {
-      type: Number,
-      required: true
-    },
-    projectId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Project',
-      required: true
-    },
-    backlogItemId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Backlog',
-      required: true
-    },
-    // NOTE this is a relationship more here later
-    creatorId: {
-      type: Schema.Types.ObjectId,
-      ref: 'Account',
-      required: true
-    },
-    completedOn: {
-      type: Date,
-      required: false
-    }
+    name: { type: String, required: true },
+    weight: { type: Number, required: true },
+    projectId: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
+    backlogItemId: { type: Schema.Types.ObjectId, ref: 'Backlog', required: true },
+    creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
+    completedOn: { type: Date, required: false }
     // assignedTo: [{ type: Schema.Types.ObjectId, ref: 'Profile' }]
   },
   { timestamps: true, toJSON: { virtuals: true } }
