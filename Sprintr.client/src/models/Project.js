@@ -3,5 +3,6 @@ export class Project {
     this.name = data.name
     this.description = data.description
     this.creatorId = data.creatorId || ''
+    this.id = data.projectId
   }
 }
