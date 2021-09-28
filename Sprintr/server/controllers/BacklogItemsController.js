@@ -6,20 +6,19 @@ import { logger } from '../utils/Logger.js'
 
 export class BacklogItemsController extends BaseController {
   constructor() {
-    super('api/projects/:projectId/backlog')
+    super('api/projects/:projectId')
     this.router
-      .get('', this.getBacklogItems)
-      .get('/:backlogItemId', this.getBacklogItem)
+      .get('/backlog', this.getBacklogItems)
+      .get('/backlog/:backlogItemId', this.getBacklogItem)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.createBacklogItem)
-      .put('/:backlogItemId', this.editBacklogItem)
-      // .put('/:backlogItemId', this.editSprint)
-      .delete('/:backlogItemId', this.removeBacklogItem)
+      .post('/backlog', this.createBacklogItem)
+      .put('/backlog/:backlogItemId/', this.editBacklogItem)
+      .delete('/backlog/:backlogItemId', this.removeBacklogItem)
   }
 
   async getBacklogItems(req, res, next) {
     try {
-      const backlogItems = await backlogItemsService.getBacklogItems(req.query)
+      const backlogItems = await backlogItemsService.getBacklogItems({ projectId: req.params.projectId })
       res.send(backlogItems)
     } catch (error) {
       next(error)
@@ -37,7 +36,6 @@ export class BacklogItemsController extends BaseController {
 
   async createBacklogItem(req, res, next) {
     try {
-      logger.log('Who is this?', req.userInfo)
       req.body.creatorId = req.userInfo.id
       const backlogItem = await backlogItemsService.createBacklogItem(req.body)
       backlogItem.creator = req.userInfo
@@ -59,15 +57,6 @@ export class BacklogItemsController extends BaseController {
   async editBacklogItem(req, res, next) {
     try {
       const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.userInfo.id, req.body)
-      res.send(backlogItem)
-    } catch (error) {
-      next(error)
-    }
-  }
-
-  async editSprint(req, res, next) {
-    try {
-      const backlogItem = await sprintsService.editSprint(req.params.backlogItemId, req.userInfo.id, req.body)
       res.send(backlogItem)
     } catch (error) {
       next(error)

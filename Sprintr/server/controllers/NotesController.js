@@ -34,7 +34,6 @@ export class NotesController extends BaseController {
 
   async createNote(req, res, next) {
     try {
-      logger.log('Who is this?', req.userIno)
       req.body.creatorId = req.userInfo.id
       const note = await notesService.createNote(req.body)
       note.creator = req.userInfo

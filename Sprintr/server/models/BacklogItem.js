@@ -34,3 +34,10 @@ BacklogItemSchema.virtual('sprint', {
   ref: 'Sprint',
   justOne: true
 })
+
+BacklogItemSchema.virtual('backlog', {
+  localField: 'backlogItemId',
+  foreignField: '_id',
+  ref: 'Backlog',
+  justOne: true
+})
