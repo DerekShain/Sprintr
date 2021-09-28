@@ -37,41 +37,25 @@ import { Project } from '../models/Project.js'
 import { useRouter } from 'vue-router'
 import { AppState } from '../AppState.js'
 import { computed, watchEffect } from '@vue/runtime-core'
+import { router } from '../router.js'
 
 export default {
-  props: {
-    project: {
-      type: Object,
-      default: () => new Project()
-    }
-  },
-  setup(props) {
+  setup() {
     const editable = ref({})
-    const router = useRouter()
-    const state = reactive({
-      currentProject: computed(() => AppState.currentProject)
-    })
-    watchEffect(() => {
-      editable.value = { ...props.project }
-    })
     return {
       editable,
       async createProject() {
         try {
-          await projectsService.createProject(editable.value)
+          if (editable.value.id) {
+            await projectsService.editProject(editable.value)
+          } else {
+            const id = await projectsService.createProject(editable.value)
+            router.push({ name: 'Project', params: { projectId: id } })
+          }
           editable.value = {}
-          Pop.toast('You made it', 'success')
-
+          Pop.toast('Noice!', 'success')
           const modal = Modal.getInstance(document.getElementById('project-form'))
           modal.hide()
-        } catch (error) {
-          Pop.toast(error, 'error')
-        }
-      },
-      async toProject() {
-        try {
-          await projectsService.getProjectById(props.project.id)
-          router.push({ name: 'Project', params: { projectId: state.currentProject.id } })
         } catch (error) {
           Pop.toast(error, 'error')
         }
