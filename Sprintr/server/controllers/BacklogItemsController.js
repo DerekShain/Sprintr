@@ -1,9 +1,6 @@
 import { backlogItemsService } from '../services/BacklogItemsService.js'
-import { sprintsService } from '../services/SprintsService.js'
 import BaseController from '../utils/BaseController.js'
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { logger } from '../utils/Logger.js'
-
 export class BacklogItemsController extends BaseController {
   constructor() {
     super('api/projects/:projectId')
