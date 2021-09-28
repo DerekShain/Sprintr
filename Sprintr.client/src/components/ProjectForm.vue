@@ -21,9 +21,9 @@
       >
     </div>
     <div class="form-group">
-      <button type="submit" class="btn btn-success mt-3">
+      <router-link :to="{ name: 'Projects' }" type="submit" class="btn btn-success mt-3">
         Create Project
-      </button>
+      </router-link>
     </div>
   </form>
 </template>

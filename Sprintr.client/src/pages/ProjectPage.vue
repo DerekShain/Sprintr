@@ -1,14 +1,13 @@
 <template>
   <div class="container-fluid">
-    <Project />
+    <!-- <Project /> -->
+    this is the Project page
   </div>
 </template>
 
 <script>
 export default {
-  setup() {
-    return {}
-  }
+  name: 'Project'
 }
 </script>
 
