@@ -15,7 +15,7 @@ class BacklogItemsService {
     if (userId !== backlogItem.creatorId.toString()) {
       throw new Forbidden('not authorized')
     }
-    backlogItem.name = backlogItemData.name
+    backlogItem.name = backlogItemData.name || backlogItem.name
     backlogItem.description = backlogItemData.description || backlogItem.description
     backlogItem.status = backlogItemData.status || backlogItem.status
     backlogItem.projectId = backlogItemData.projectId || backlogItem.projectId
