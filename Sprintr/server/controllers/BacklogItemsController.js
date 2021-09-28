@@ -12,6 +12,7 @@ export class BacklogItemsController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createBacklogItem)
       .put('/:backlogItemId', this.editBacklogItem)
+      // .put('/:sprintId', this.editBacklogItem)
       .delete('/:backlogItemId', this.removeBacklogItem)
   }
 
@@ -37,7 +38,6 @@ export class BacklogItemsController extends BaseController {
     try {
       logger.log('Who is this?', req.userInfo)
       req.body.creatorId = req.userInfo.id
-
       const backlogItem = await backlogItemsService.createBacklogItem(req.body)
       backlogItem.creator = req.userInfo
       res.send(backlogItem)

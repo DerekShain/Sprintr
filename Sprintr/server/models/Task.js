@@ -8,7 +8,8 @@ export const TaskSchema = new Schema(
     projectId: { type: Schema.Types.ObjectId, ref: 'Project', required: true },
     backlogItemId: { type: Schema.Types.ObjectId, ref: 'Backlog', required: true },
     creatorId: { type: Schema.Types.ObjectId, ref: 'Account', required: true },
-    completedOn: { type: Date, required: false }
+    isComplete: { type: Boolean, default: false, required: true }
+    // completedOn:{type: Date}
     // assignedTo: [{ type: Schema.Types.ObjectId, ref: 'Profile' }]
   },
   { timestamps: true, toJSON: { virtuals: true } }

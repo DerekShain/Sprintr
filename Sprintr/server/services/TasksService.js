@@ -21,7 +21,7 @@ class TasksService {
     // task.projectId = taskData.projectId || task.projectId
     // task.backlogItemId = taskData.backlogItemId || task.backlogItemId
     // task.creatorId = taskData.creatorId || task.creatorId
-    // task.completedOn = taskData.completedOn || task.completedOn
+    task.isComplete = taskData.isComplete || task.isComplete
     // task.assignedTo = taskData.assignedTo || task.assignedTo
     await task.save()
     return task
