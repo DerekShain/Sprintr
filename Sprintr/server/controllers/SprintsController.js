@@ -5,7 +5,7 @@ import { logger } from '../utils/Logger.js'
 
 export class SprintsController extends BaseController {
   constructor() {
-    super('api/sprints')
+    super('api/projects/:projectId/sprints')
     this.router
       .get('', this.getSprints)
       .get('/:sprintId', this.getSprint)

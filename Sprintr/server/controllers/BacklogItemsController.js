@@ -5,7 +5,7 @@ import { logger } from '../utils/Logger.js'
 
 export class BacklogItemsController extends BaseController {
   constructor() {
-    super('api/backlog')
+    super('api/projects/:projectId/backlog')
     this.router
       .get('', this.getBacklogItems)
       .get('/:backlogItemId', this.getBacklogItem)

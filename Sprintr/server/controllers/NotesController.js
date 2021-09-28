@@ -5,7 +5,7 @@ import { logger } from '../utils/Logger.js'
 
 export class NotesController extends BaseController {
   constructor() {
-    super('api/notes')
+    super('api/projects/:projectId/notes')
     this.router
       .get('', this.getNotes)
       .get('/:noteId', this.getNote)
