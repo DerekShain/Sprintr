@@ -7,10 +7,9 @@ export class TasksController extends BaseController {
   constructor() {
     super('api/tasks')
     this.router
-      .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getTasks)
       .get('/:taskId', this.getTask)
-      .get('/:id/notes', this.getTasks)
+      .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createTask)
       .delete('/:taskId', this.removeTask)
       .put('/:taskId', this.editTask)

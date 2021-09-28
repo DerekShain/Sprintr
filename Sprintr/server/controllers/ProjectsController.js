@@ -29,7 +29,7 @@ export class ProjectsController extends BaseController {
       const project = await projectsService.getProjectById(req.params.projectId)
       res.send(project)
     } catch (error) {
-
+      next(error)
     }
   }
 

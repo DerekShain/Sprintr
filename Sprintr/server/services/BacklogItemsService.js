@@ -15,7 +15,7 @@ class BacklogItemsService {
     if (userId !== backlogItem.creatorId.toString()) {
       throw new Forbidden('not authorized')
     }
-    backlogItem.name = backlogItemData.name || backlogItem.name
+    backlogItem.name = backlogItemData.name
     backlogItem.description = backlogItemData.description || backlogItem.description
     backlogItem.status = backlogItemData.status || backlogItem.status
     backlogItem.projectId = backlogItemData.projectId || backlogItem.projectId
@@ -42,6 +42,7 @@ class BacklogItemsService {
     return backlogItem
   }
 
+  // NOTE there is something wrong with this. it does not like .find(query)
   async getBacklogItems(query) {
     const backlogItems = await dbContext.BacklogItems.find(query).populate('creator', 'name picture')
     return backlogItems

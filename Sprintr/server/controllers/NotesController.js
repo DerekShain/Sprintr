@@ -5,13 +5,13 @@ import { logger } from '../utils/Logger.js'
 
 export class NotesController extends BaseController {
   constructor() {
-    super('api/projects/:projectId')
+    super('api/notes')
     this.router
-      .get('/notes', this.getNotes)
+      .get('', this.getNotes)
       .get('/:noteId', this.getNote)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('/notes', this.createNote)
-      .delete('/notes/:noteId', this.removeNote)
+      .post('', this.createNote)
+      .delete('/:noteId', this.removeNote)
   }
 
   async getNotes(req, res, next) {

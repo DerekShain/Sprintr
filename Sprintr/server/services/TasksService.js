@@ -15,14 +15,14 @@ class TasksService {
     if (userId !== task.creatorId.toString()) {
       throw new Forbidden('You shall not pass!!!')
     }
-    task.name = taskData.name || task.name
-    task.id = taskData.id || task.id
-    task.weight = taskData.weight || task.weight
-    task.projectId = taskData.projectId || task.projectId
-    task.backlogItemId = taskData.backlogItemId || task.backlogItemId
-    task.creatorId = taskData.creatorId || task.creatorId
-    task.completedOn = taskData.completedOn || task.completedOn
-    task.assignedTo = taskData.assignedTo || task.assignedTo
+    // task.name = taskData.name || task.name
+    // task.id = taskData.id || task.id
+    // task.weight = taskData.weight || task.weight
+    // task.projectId = taskData.projectId || task.projectId
+    // task.backlogItemId = taskData.backlogItemId || task.backlogItemId
+    // task.creatorId = taskData.creatorId || task.creatorId
+    // task.completedOn = taskData.completedOn || task.completedOn
+    // task.assignedTo = taskData.assignedTo || task.assignedTo
     await task.save()
     return task
   }
