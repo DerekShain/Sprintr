@@ -44,7 +44,7 @@ export default {
       try {
         await tasksService.getBacklogTask(props.backlog.id)
       } catch (error) {
-        Pop.toas(error, 'error')
+        Pop.toast(error, 'error')
       }
     })
     return {

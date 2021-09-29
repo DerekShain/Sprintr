@@ -21,6 +21,18 @@
       >
     </div>
     <div class="form-group">
+      <label class="pr-2" for="backlog-status">Status</label>
+      <select name="status" id="status" required class="form-control" v-model="editable.status">
+        <option disabled selected value="">
+          Please Choose your Status
+        </option>
+        <option>pending</option>
+        <option>in-progress</option>
+        <option>review</option>
+        <option>done</option>
+      </select>
+    </div>
+    <div class="form-group">
       <button type="submit" class="btn btn-success mt-3">
         Create Backlog
       </button>
@@ -34,18 +46,21 @@ import Pop from '../utils/Pop.js'
 import { ref } from '@vue/reactivity'
 import { backlogsService } from '../services/BacklogsService.js'
 import { router } from '../router.js'
+import { useRoute } from 'vue-router'
 
 export default {
   setup() {
+    const route = useRoute()
     const editable = ref({})
     return {
       editable,
+      route,
       async createBacklog() {
         try {
           if (editable.value.id) {
             await backlogsService.editBacklog(editable.value)
           } else {
-            const id = await backlogsService.createBacklog(editable.value)
+            const id = await backlogsService.createBacklog(route.params.projectId, editable.value)
             router.push({ name: 'Backlog', params: { backlogId: id } })
           }
           editable.value = {}
