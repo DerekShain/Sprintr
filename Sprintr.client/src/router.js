@@ -26,6 +26,11 @@ const routes = [
         path: 'backlog',
         name: 'Project.Backlog',
         component: loadPage('BacklogsPage')
+      },
+      {
+        path: 'sprint',
+        name: 'Project.Sprint',
+        component: loadPage('SprintsPage')
       }
     ]
   },

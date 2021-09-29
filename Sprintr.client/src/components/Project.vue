@@ -6,6 +6,9 @@
       <router-link :to="{name:'Project.Backlog'}" class="text-dark lighten-30">
         Backlogs
       </router-link>
+      <router-link :to="{name:'Project.Sprint'}" class="text-dark lighten-30">
+        Sprints
+      </router-link>
     </div>
     <router-view />
   </div>
