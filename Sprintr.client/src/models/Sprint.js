@@ -4,7 +4,7 @@ export class Sprint {
     this.startDate = data.startDate
     this.endDate = data.endDate
     this.projectId = data.projectId
-    this.creatorId = data.creatorId
+    this.creatorId = data.creatorId || ''
     this.id = data.id
   }
 }

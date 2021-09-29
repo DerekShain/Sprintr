@@ -5,7 +5,7 @@ export class Backlog {
     this.status = data.status
     this.projectId = data.projectId
     this.sprintId = data.sprintId
-    this.creatorId = data.creatorId
+    this.creatorId = data.creatorId || ''
     this.color = data.color
     this.id = data.id
   }
