@@ -29,7 +29,7 @@ class BacklogsService {
   async removeBacklog(projectId, backlogId) {
     await api.delete(`api/projects/${projectId}/backlogs/${backlogId}`)
     AppState.backlog = null
-    AppState.backlogs.filter(c => c.id !== backlogId)
+    AppState.backlogs.filter(c => c.id !== backlogId, projectId)
   }
 }
 

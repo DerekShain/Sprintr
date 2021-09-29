@@ -2,12 +2,12 @@
   <div class="col-11 py-5 my-3 ">
     <div class="row bg-light">
       <div class="col-6">
-        <!-- <h1>Backlog Item: {{ backlogItem.name }}</h1> -->Item
+        <h1>Backlog Item: {{ backlog.name }}</h1>
         <h2>
           <i class="fas fa-weight-hanging text-dark"></i>
-          <!-- Total Backlog Weight: {{ totalWeight }} -->Weight
+          <!-- Total Backlog Weight: {{ totalWeight }} -->Total Weight
           <div class="mt-1">
-            <!-- {{ completed.length }} / {{ tasks.length }} Tasks Completed -->Complete
+            <!-- {{ completed.length }} / {{ tasks.length }} Tasks Completed -->
           </div>
         </h2>
       </div>
@@ -31,7 +31,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { backlogsService } from '../services/BacklogsService'
 import Pop from '../utils/Pop'
-import { tasksService } from '../services/TasksService'
+// import { tasksService } from '../services/TasksService'
 export default {
   props: {
     backlog: {
@@ -40,13 +40,13 @@ export default {
     }
   },
   setup(props) {
-    onMounted(async() => {
-      try {
-        await tasksService.getBacklogTask(props.backlog.id)
-      } catch (error) {
-        Pop.toast(error, 'error')
-      }
-    })
+    // onMounted(async() => {
+    //   try {
+    //     await tasksService.getBacklogTask(props.backlog.id)
+    //   } catch (error) {
+    //     Pop.toast(error, 'error')
+    //   }
+    // })
     return {
       account: computed(() => AppState.account),
       tasks: computed(() => AppState.tasks[props.backlog.id] || []),
