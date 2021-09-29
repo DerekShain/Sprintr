@@ -18,6 +18,7 @@ class BacklogsService {
   async createBacklog(projectId, backlog) {
     const res = await api.post(`api/projects/${projectId}/backlogs`, backlog)
     AppState.backlogs.push(new Backlog(res.data))
+    return res.data.id
   }
 
   async editBacklog(projectId, backlog) {
