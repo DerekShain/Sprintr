@@ -1,18 +1,59 @@
 <template>
   <div class="card text-center">
     <div class="card-header">
+      <!-- NOTE First navbar -->
+      <nav class="navbar navbar-dark bg-dark text-white">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Project Item First Navbar</a>
+          <button class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasNavbar"
+                  aria-controls="offcanvasNavbar"
+                  title="Menu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                Projects
+              </h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item" data-bs-dismiss="offcanvas">
+                  <router-link :to="{name:'Project.Backlog'}" class="text-white lighten-30 nav-link ">
+                    Backlogs
+                  </router-link>
+                </li>
+                <li class="nav-item" data-bs-dismiss="offcanvas">
+                  <router-link :to="{name:'Project.Sprint'}" class="text-white lighten-30 ">
+                    Sprints
+                  </router-link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- NOTE Second Nabar -->
       <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
-          <li class="nav-item">
-            <router-link :to="{name:'Project.Backlog'}" class="text-white lighten-30 bg-dark nav-link active">
-              Backlogs
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link :to="{name:'Project.Sprint'}" class="text-white bg-dark lighten-30 nav-link active">
-              Sprints
-            </router-link>
-          </li>
+          <!-- <li class="nav-item"> -->
+          <router-link :to="{name:'Project.Backlog'}" class="text-white lighten-30 bg-dark nav-link active">
+            Backlogs
+          </router-link>
+          <!-- </li> -->
+          <!-- <li class="nav-item"> -->
+          <router-link :to="{name:'Project.Sprint'}" class="text-white bg-dark lighten-30 nav-link active">
+            Sprints
+          </router-link>
+          <!-- </li> -->
         </div>
       </div>
       <nav class="navbar navbar-dark bg-dark">
@@ -26,10 +67,11 @@
                   aria-label="Toggle navigation"
                   title="Menu"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"> </span>Project Item Second Navbar
           </button>
         </div>
       </nav>
+      <!-- NOTE end of navbars -->
       <ul class="nav nav-tabs card-header-tabs">
         <!-- <li class="nav-item">
           <router-link :to="{name:'Project.Backlog'}" class="text-dark lighten-30 nav-link active">
@@ -48,25 +90,11 @@
         {{ project.name }}
       </h5>
       <p class="card-text">
-        {{ project.description }}}}
+        {{ project.description }}
       </p>
       <router-view />
     </div>
   </div>
-
-  <!-- <div class="row">
-    <div class="card">
-      {{ project.name }}
-      <p>{{ project.description }}</p>
-      <router-link :to="{name:'Project.Backlog'}" class="text-dark lighten-30">
-        Backlogs
-      </router-link>
-      <router-link :to="{name:'Project.Sprint'}" class="text-dark lighten-30">
-        Sprints
-      </router-link>
-    </div>
-    <router-view />
-  </div> -->
 </template>
 
 <script>
