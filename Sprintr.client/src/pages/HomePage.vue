@@ -1,9 +1,11 @@
 <template>
   <div class="home d-flex flex-column align-items-center p-4">
-    <div class="home-card p-5 bg-white rounded elevation-3 scroll">
-      <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#project-form">
-        Create Project
-      </button>
+    <div class="home-card p-5 bg-white rounded elevation-3 ">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
+        <button class="btn btn-primary " type="submit" data-bs-toggle="modal" data-bs-target="#project-form">
+          Create Project
+        </button>
+      </div>
       <ProjectCard v-for="p in projects" :key="p.id" :project="p" />
     </div>
   </div>
