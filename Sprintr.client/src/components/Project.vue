@@ -26,13 +26,15 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
+                <!-- NOTE Backlog Link -->
                 <li class="nav-item" data-bs-dismiss="offcanvas">
-                  <router-link :to="{name:'Project.Backlog'}" class="text-white lighten-30 nav-link ">
+                  <router-link :to="{name:'Project.Backlog'}" class="text-white lighten-30 nav-link btn">
                     Backlogs
                   </router-link>
                 </li>
+                <!-- NOTE Sprints Link -->
                 <li class="nav-item" data-bs-dismiss="offcanvas">
-                  <router-link :to="{name:'Project.Sprint'}" class="text-white lighten-30 ">
+                  <router-link :to="{name:'Project.Sprint'}" class="text-white lighten-30 btn">
                     Sprints
                   </router-link>
                 </li>
