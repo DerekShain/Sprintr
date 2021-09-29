@@ -3,12 +3,12 @@
     <div class="row bg-light">
       <div class="col-6">
         <h1>Sprint: {{ sprint.name }}</h1>
-        <h2>
+        <!-- <h2>
           <i class="fas fa-weight-hanging text-dark"></i>
 
           <div class="mt-1">
           </div>
-        </h2>
+        </h2> -->
       </div>
       <div class="col-6 mt-3">
         <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeSprint()" title="Sprint">
@@ -41,6 +41,7 @@ export default {
       route,
       account: computed(() => AppState.account),
       sprints: computed(() => AppState.sprints),
+      backlog: computed(() => AppState.backlog),
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects),

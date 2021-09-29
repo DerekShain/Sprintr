@@ -41,8 +41,8 @@ import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
 import { ref } from '@vue/reactivity'
 import { sprintsService } from '../services/SprintsService.js'
-import { router } from '../router.js'
 import { useRoute } from 'vue-router'
+import { logger } from '../utils/Logger.js'
 
 export default {
   setup() {
@@ -65,6 +65,7 @@ export default {
           modal.hide()
         } catch (error) {
           Pop.toast(error, 'error')
+          logger.log('this is the create backlog error', error)
         }
       }
     }
