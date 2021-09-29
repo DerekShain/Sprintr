@@ -2,22 +2,26 @@
   <div class="d-flex flex-column align-items-center p-4">
     <div class="card p-5 bg-white rounded elevation-3 ">
       <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
-        <h3> {{ project.name }}</h3>
-        <!-- <h5> {{ project.description }}</h5> -->
+        <Project :project="project" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { useRoute } from 'vue-router'
+import { projectsService } from '../services/ProjectsService'
 export default {
-  name: 'Project',
   setup() {
+    const route = useRoute()
+    onMounted(() =>
+      projectsService.getProjectById(route.params.projectId)
+    )
     return {
       account: computed(() => AppState.account),
-      projects: computed(() => AppState.projects),
+      // projects: computed(() => AppState.projects),
       project: computed(() => AppState.project)
     }
   }
