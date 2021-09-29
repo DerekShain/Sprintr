@@ -35,6 +35,31 @@
     "editor.codeActionsOnSave": {
       "source.fixAll": true
     },
-    "cSpell.words": ["virtuals"]
+    "cSpell.words": ["virtuals"],
+    "peacock.affectAccentBorders": true,
+    "peacock.affectTabActiveBorder": true,
+    "peacock.affectStatusAndTitleBorders": true,
+    "workbench.colorCustomizations": {
+      "editorGroup.border": "#285883",
+      "panel.border": "#285883",
+      "sideBar.border": "#285883",
+      "tab.activeBorder": "#285883",
+      "activityBar.activeBackground": "#285883",
+      "activityBar.activeBorder": "#d26da2",
+      "activityBar.background": "#285883",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "statusBar.background": "#1c3e5c",
+      "statusBar.border": "#1c3e5c",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#285883",
+      "titleBar.activeBackground": "#1c3e5c",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.border": "#1c3e5c",
+      "titleBar.inactiveBackground": "#1c3e5c99",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#1c3e5c",
+    "peacock.keepBadgeColor": true
   }
 }
