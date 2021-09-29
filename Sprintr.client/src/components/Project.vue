@@ -1,9 +1,8 @@
 <template>
   <div class="row">
     <div class="card">
-      <router-link :to="{name: 'Project' }" class="btn text-success lighten-30 selectable text-uppercase">
-        Project
-      </router-link>
+      {{ project.name }}
+      <p>{{ project.description }}</p>
     </div>
   </div>
 </template>
