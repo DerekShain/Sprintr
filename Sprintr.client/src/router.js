@@ -28,6 +28,11 @@ const routes = [
         component: loadPage('BacklogsPage')
       },
       {
+        path: 'backlog/:backlogId',
+        name: 'Project.Backlog.Item',
+        component: loadPage('BacklogsPage')
+      },
+      {
         path: 'sprint',
         name: 'Project.Sprint',
         component: loadPage('SprintsPage')

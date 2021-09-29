@@ -1,5 +1,6 @@
 import { AppState } from '../AppState.js'
 import { Backlog } from '../models/Backlog.js'
+import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class BacklogsService {
@@ -27,9 +28,11 @@ class BacklogsService {
   }
 
   async removeBacklog(projectId, backlogId) {
-    await api.delete(`api/projects/${projectId}/backlogs/${backlogId}`)
-    AppState.backlog = null
-    AppState.backlogs.filter(c => c.id !== backlogId, projectId)
+    // AppState.backlog = ''
+    logger.log(backlogId)
+    const res = await api.delete(`api/projects/${projectId}/backlog/`, +backlogId)
+    logger.log('log the res', res)
+    // AppState.backlogs.filter(c => c.id !== backlogId)
   }
 }
 
