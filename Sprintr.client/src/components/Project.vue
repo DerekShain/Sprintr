@@ -21,6 +21,7 @@ import { Project } from '../models/Project.js'
 import { computed } from '@vue/runtime-core'
 import Pop from '../utils/Pop.js'
 import { projectsService } from '../services/ProjectsService.js'
+import { router } from '../router.js'
 
 export default {
   props: {
@@ -40,6 +41,7 @@ export default {
           if (!yes) { return }
           await projectsService.deleteProject(props.project.id)
           Pop.toast('Project has been deleted!', 'success')
+          router.push({ name: 'Home' })
         } catch (error) {
           Pop.toast(error, 'error')
         }

@@ -28,7 +28,7 @@ class ProjectsService {
   async deleteProject(projectId) {
     const res = await api.delete('api/projects/' + projectId)
     logger.log('delete project res', res)
-    AppState.projects = AppState.projects.filter(p => p.id !== projectId)
+    // AppState.projects = AppState.projects.filter(p => p.id !== projectId)
   }
 
   async editProject(project) {
