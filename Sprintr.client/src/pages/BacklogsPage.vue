@@ -23,11 +23,13 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { backlogsService } from '../services/BacklogsService'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
+import { useRoute } from 'vue-router'
 export default {
   setup() {
+    const route = useRoute()
     onMounted(async() => {
       try {
-        await backlogsService.getBacklogs()
+        await backlogsService.getBacklogs(route.params.projectId)
       } catch (error) {
         Pop.toast(error, 'error on the backlog page')
       }
