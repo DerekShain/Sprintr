@@ -1,12 +1,14 @@
 <template>
   <div class="home d-flex flex-column align-items-center p-4">
-    <div class="home-card p-5 bg-white rounded elevation-3 ">
+    <div class="home-card p-2 bg-dark rounded elevation-3 ">
       <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
         <button class="btn btn-primary " type="submit" data-bs-toggle="modal" data-bs-target="#project-form">
           Create Project
         </button>
       </div>
-      <ProjectCard v-for="p in projects" :key="p.id" :project="p" />
+      <div class="d-flex flex-column align-items-center">
+        <ProjectCard v-for="p in projects" :key="p.id" :project="p" />
+      </div>
     </div>
   </div>
 
@@ -54,7 +56,7 @@ export default {
     width: 50vw;
     > img{
       height: 200px;
-      max-width: 200px;
+      max-width: 600px;
       width: 100%;
       object-fit: contain;
       object-position: center;

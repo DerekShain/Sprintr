@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-dark bg-dark text-white text-center">
+  <nav class="navbar navbar-dark bg-dark text-white text-center fixed">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Project Item First Navbar</a>
       <button class="navbar-toggler"

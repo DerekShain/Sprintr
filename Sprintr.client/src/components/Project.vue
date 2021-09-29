@@ -1,12 +1,15 @@
 <template>
-  <div class="card text-center">
-    <div class="card-body">
+  <div class=" text-center">
+    <div class="card-body" style="width: 50vw">
       <h5 class="card-title">
         {{ project.name }}
       </h5>
       <p class="card-text">
         {{ project.description }}
       </p>
+      Created on
+      {{ new Date(project.createdAt).toLocaleString() }}
+      <i class="mdi mdi-delete-sweep text-secondary ps-3 f-18" aria-hidden="true" title="Delete Project" @click="removeProject"></i>
       <router-view />
     </div>
   </div>
@@ -16,6 +19,8 @@
 import { AppState } from '../AppState.js'
 import { Project } from '../models/Project.js'
 import { computed } from '@vue/runtime-core'
+import Pop from '../utils/Pop.js'
+import { projectsService } from '../services/ProjectsService.js'
 
 export default {
   props: {
@@ -28,7 +33,17 @@ export default {
     return {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile),
-      projects: computed(() => AppState.projects)
+      projects: computed(() => AppState.projects),
+      async removeProject() {
+        try {
+          const yes = await Pop.confirm('Are you sure you want to delete?')
+          if (!yes) { return }
+          await projectsService.deleteProject(props.project.id)
+          Pop.toast('Project has been deleted!', 'success')
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
     }
   }
 }

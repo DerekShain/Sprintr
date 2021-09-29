@@ -1,5 +1,5 @@
 <template>
-  <div class="card m-2">
+  <div class="card" style="width:500px">
     <div class="card-body">
       <h2>  {{ project.name }}</h2>
       <router-link :to="{name: 'Project', params: {projectId: project.id}}" class="selectable">
