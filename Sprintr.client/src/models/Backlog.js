@@ -7,6 +7,7 @@ export class Backlog {
     this.sprintId = data.sprintId
     this.creatorId = data.creatorId || ''
     this.color = data.color
+    this.backlogId = data.backlogId
     this.id = data.id
   }
 }

@@ -12,7 +12,7 @@
         </h2>
       </div>
       <div class="col-6 mt-3">
-        <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeBacklog" title="Delete Backlog Item">
+        <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeBacklog()" title="Delete Backlog Item">
           <i class="fa fa-trash text-dark"></i>
           Delete
         </button>
@@ -31,6 +31,8 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { backlogsService } from '../services/BacklogsService'
 import Pop from '../utils/Pop'
+import { logger } from '../utils/Logger'
+import { useRoute } from 'vue-router'
 // import { tasksService } from '../services/TasksService'
 export default {
   props: {
@@ -40,6 +42,7 @@ export default {
     }
   },
   setup(props) {
+    const route = useRoute()
     // onMounted(async() => {
     //   try {
     //     await tasksService.getBacklogTask(props.backlog.id)
@@ -48,14 +51,20 @@ export default {
     //   }
     // })
     return {
+      route,
       account: computed(() => AppState.account),
       tasks: computed(() => AppState.tasks[props.backlog.id] || []),
+      // backlog: computed(() => AppState.backlog),
+      backlogs: computed(() => AppState.backlogs),
+      project: computed(() => AppState.project),
+      projects: computed(() => AppState.projects),
       async removeBacklog() {
         try {
-          if (await Pop.confirm()) {
-            await backlogsService.removeBacklog(props.backlog.id)
-            Pop.toast('Deleted', 'success')
-          }
+          const yes = await Pop.confirm('Are you positive?')
+          if (!yes) { return }
+          logger.log('This is on the backlog Card', props.backlog.id)
+          await backlogsService.removeBacklog(route.params.projectId)
+          Pop.toast('Deleted', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
         }
