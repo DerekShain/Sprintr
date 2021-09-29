@@ -3,30 +3,30 @@ import { Backlog } from '../models/Backlog.js'
 import { api } from './AxiosService.js'
 
 class BacklogsService {
-  async getBacklogs(query = '') {
+  async getBacklogs(projectId, query = '') {
     AppState.backlogs = []
-    const res = await api.get('api/projects/:projectId/backlogs' + query)
+    const res = await api.get(`api/projects/${projectId}/backlog`, +query)
     AppState.backlogs = res.data.map(c => new Backlog(c))
   }
 
-  async getBacklogById(backlogId) {
+  async getBacklogById(projectId, backlogId) {
     AppState.backlog = null
-    const res = await api.get(`api/projects/:projectId/backlogs/${backlogId}`)
+    const res = await api.get(`api/projects/${projectId}/backlogs/${backlogId}`)
     AppState.backlog = new Backlog(res.data)
   }
 
-  async createBacklog(backlog) {
-    const res = await api.post('api/projects/:projectId/backlogs', backlog)
+  async createBacklog(projectId, backlog) {
+    const res = await api.post(`api/projects/${projectId}/backlogs`, backlog)
     AppState.backlogs.push(new Backlog(res.data))
   }
 
-  async editBacklog(backlog) {
-    const res = await api.put(`api/projects/:projectId/backlogs/${backlog.id}`, backlog)
+  async editBacklog(projectId, backlog) {
+    const res = await api.put(`api/projects/${projectId}/backlogs/${backlog.id}`, backlog)
     AppState.backlog = new Backlog(res.data)
   }
 
-  async removeBacklog(backlogId) {
-    await api.delete(`api/projects/:projectId/backlogs/${backlogId}`)
+  async removeBacklog(projectId, backlogId) {
+    await api.delete(`api/projects/${projectId}/backlogs/${backlogId}`)
     AppState.backlog = null
     AppState.backlogs.filter(c => c.id !== backlogId)
   }

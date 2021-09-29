@@ -40,12 +40,17 @@
       </div>
     </div>
   </nav>
-  <div class="d-flex flex-column align-items-center p-4">
+  <div class="d-flex flex-column align-items-center p-4" v-if="project.id">
     <div class="card p-5 bg-white rounded elevation-3 ">
       <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
         <Project :project="project" />
       </div>
     </div>
+  </div>
+  <div v-else>
+    <h4 class="text-light">
+      ....Loading
+    </h4>
   </div>
 </template>
 
@@ -63,7 +68,8 @@ export default {
     return {
       account: computed(() => AppState.account),
       // projects: computed(() => AppState.projects),
-      project: computed(() => AppState.project)
+      project: computed(() => AppState.project),
+      projects: computed(() => AppState.projects)
     }
   }
 }

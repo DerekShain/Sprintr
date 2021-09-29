@@ -12,14 +12,14 @@
     </div>
   </div>
 
-  <Modal>
+  <ProjectModal>
     <template #modal-title>
       <h4>Project Form</h4>
     </template>
     <template #modal-body>
       <ProjectForm />
     </template>
-  </Modal>
+  </ProjectModal>
 </template>
 
 <script>

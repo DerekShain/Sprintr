@@ -1,13 +1,43 @@
 <template>
   <div class="backlogs">
     <h1> This is a test for the backlog</h1>
+    <button class="btn btn-primary " type="submit" data-bs-toggle="modal" data-bs-target="#backlog-form">
+      Add Backlog item
+    </button>
+    <div class="backlogList">
+      <BacklogCard v-for="b in backlogs" :key="b.id" :backlog="b" />
+    </div>
   </div>
+  <BacklogModal>
+    <template #modal-title>
+      <h4>Backlog Form</h4>
+    </template>
+    <template #modal-body>
+      <BacklogForm />
+    </template>
+  </BacklogModal>
 </template>
 
 <script>
+import { computed, onMounted } from '@vue/runtime-core'
+import { backlogsService } from '../services/BacklogsService'
+import { AppState } from '../AppState'
+import Pop from '../utils/Pop'
 export default {
   setup() {
-    return {}
+    onMounted(async() => {
+      try {
+        await backlogsService.getBacklogs()
+      } catch (error) {
+        Pop.toast(error, 'error on the backlog page')
+      }
+    })
+    return {
+      backlogs: computed(() => AppState.backlogs),
+      backlog: computed(() => AppState.backlog),
+      project: computed(() => AppState.project),
+      projects: computed(() => AppState.projects)
+    }
   }
 }
 </script>

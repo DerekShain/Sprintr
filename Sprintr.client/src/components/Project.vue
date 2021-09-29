@@ -33,7 +33,6 @@ export default {
   setup(props) {
     return {
       account: computed(() => AppState.account),
-      profile: computed(() => AppState.profile),
       projects: computed(() => AppState.projects),
       async removeProject() {
         try {

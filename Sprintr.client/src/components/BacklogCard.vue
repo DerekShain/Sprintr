@@ -2,12 +2,12 @@
   <div class="col-11 py-5 my-3 ">
     <div class="row bg-light">
       <div class="col-6">
-        <!-- <h1>Backlog Item: {{ backlogItem.name }}</h1> -->
+        <!-- <h1>Backlog Item: {{ backlogItem.name }}</h1> -->Item
         <h2>
           <i class="fas fa-weight-hanging text-dark"></i>
-          <!-- Total Backlog Weight: {{ totalWeight }} -->
+          <!-- Total Backlog Weight: {{ totalWeight }} -->Weight
           <div class="mt-1">
-            <!-- {{ completed.length }} / {{ tasks.length }} Tasks Completed -->
+            <!-- {{ completed.length }} / {{ tasks.length }} Tasks Completed -->Complete
           </div>
         </h2>
       </div>
@@ -16,13 +16,13 @@
           <i class="fa fa-trash text-dark"></i>
           Delete
         </button>
-        <button class="btn btn-info text-white mx-2" data-toggle="modal" :data-target="'#create-task' + backlogItem.id" title="Create New Task">
+        <!-- <button class="btn btn-info text-white mx-2" data-toggle="modal" :data-target="'#create-task' + backlog.id" title="Create New Task">
           + Add Task
-        </button>
+        </button> -->Add
       </div>
     </div>
-    <!-- <TasksThread :tasks="tasks" /> -->
-    <!-- <CreateTaskModal :backlog-item="backlogItem" /> -->
+    <!-- <TasksThread :tasks="tasks" /> -->Task
+    <!-- <CreateTaskModal :backlog-item="backlogItem" /> -->Create
   </div>
 </template>
 
@@ -53,7 +53,7 @@ export default {
       async removeBacklog() {
         try {
           if (await Pop.confirm()) {
-            await backlogsService.removeBacklog(props.backlogItem.id)
+            await backlogsService.removeBacklog(props.backlog.id)
             Pop.toast('Deleted', 'success')
           }
         } catch (error) {
