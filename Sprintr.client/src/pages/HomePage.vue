@@ -1,6 +1,6 @@
 <template>
-  <div class=" flex-grow-1 d-flex flex-column">
-    <div class="card p-5 bg-white rounded elevation-3">
+  <div class="home d-flex flex-column align-items-center p-4">
+    <div class="home-card p-5 bg-white rounded elevation-3 scroll">
       <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#project-form">
         Create Project
       </button>
@@ -45,8 +45,8 @@ export default {
 .home{
   display: grid;
   height: 80vh;
-  place-content: center;
-  text-align: center;
+  // place-content: center;
+  // text-align: center;
   user-select: none;
   .home-card{
     width: 50vw;
