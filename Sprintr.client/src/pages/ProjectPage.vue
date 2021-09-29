@@ -2,8 +2,7 @@
   <div class="d-flex flex-column align-items-center p-4">
     <div class="card p-5 bg-white rounded elevation-3 ">
       <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
-        <h3> {{ project.name }}</h3>
-        <!-- <h5> {{ project.description }}</h5> -->
+        <Project />
       </div>
     </div>
   </div>
