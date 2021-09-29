@@ -9,6 +9,8 @@ class ProjectsService {
     const res = await api.post('api/projects', newProject)
     AppState.projects.push(new Project(res.data))
     logger.log('create project res', res)
+    // NOTE added this populate to see if it will populate a picture.
+    await newProject.populate('creator', 'name picture')
     return res.data.id
   }
 
