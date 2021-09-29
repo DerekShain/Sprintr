@@ -5,14 +5,14 @@ import { logger } from '../utils/Logger.js'
 
 export class SprintsController extends BaseController {
   constructor() {
-    super('api/projects/:projectId/sprints')
+    super('api/projects/:projectId')
     this.router
-      .get('', this.getSprints)
-      .get('/:sprintId', this.getSprint)
+      .get('/sprint', this.getSprints)
+      .get('/sprint/:sprintId', this.getSprint)
       .use(Auth0Provider.getAuthorizedUserInfo)
-      .post('', this.createSprint)
-      .delete('/:sprintId', this.removeSprint)
-      .put('/:sprintId', this.editSprint)
+      .post('/sprint', this.createSprint)
+      .delete('/sprint/:sprintId', this.removeSprint)
+      .put('/sprint/:sprintId', this.editSprint)
   }
 
   async getSprints(req, res, next) {
@@ -36,6 +36,7 @@ export class SprintsController extends BaseController {
   async createSprint(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
+      req.body.sprintId = req.params.sprintId
       const sprint = await sprintsService.createSprint(req.body)
       res.send(sprint)
     } catch (error) {
@@ -45,6 +46,8 @@ export class SprintsController extends BaseController {
 
   async removeSprint(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
+      req.body.projectId = req.params.projectId
       const sprint = await sprintsService.removeSprint(req.params.sprintId, req.userInfo.id)
       res.send(sprint)
     } catch (error) {

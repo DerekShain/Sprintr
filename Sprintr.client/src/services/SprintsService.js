@@ -1,29 +1,33 @@
 import { AppState } from '../AppState.js'
 import { Sprint } from '../models/Sprint.js'
+import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class SprintsService {
-  async getSprints(query = '') {
+  async getSprints(projectId, query = '') {
     AppState.sprints = []
-    const res = await api.get('api/projects/:projectId/sprints' + query)
+    const res = await api.get(`api/projects/${projectId}/sprint` + query)
     AppState.sprints = res.data.map(s => new Sprint(s))
   }
 
-  async getSprintById(sprintId) {
+  async getSprintById(projectId, sprintId) {
     AppState.sprint = null
-    const res = await api.get(`api/projects/:projectId/sprints/${sprintId}`)
+    const res = await api.get(`api/projects/${projectId}/sprint/${sprintId}`)
     AppState.sprint = new Sprint(res.data)
   }
 
-  async createSprint(sprint) {
-    const res = await api.put('api/projects/:projectId/sprints', sprint)
-    AppState.sprint.push(new Sprint(res.data))
+  async createSprint(projectId, sprint) {
+    const res = await api.post(`api/projects/${projectId}/sprint`, sprint)
+    AppState.sprint.push(new Sprint(res.data, projectId))
+    logger.log('create sprint res', res)
+    return res.data.id
   }
 
-  async removeSprint(sprintId) {
-    await api.delete(`api/projects/:projectId/sprints/${sprintId}`)
+  async removeSprint(projectId, sprintId) {
+    const res = await api.delete(`api/projects/${projectId}/sprint/${sprintId}`)
     AppState.sprint = null
-    AppState.sprints.filter(s => s.id !== sprintId)
+    logger.log('log the res', res)
+    AppState.sprints = AppState.sprints.filter(s => s.id !== sprintId)
   }
 }
 
