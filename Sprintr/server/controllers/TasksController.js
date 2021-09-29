@@ -35,6 +35,9 @@ export class TasksController extends BaseController {
 
   async createTask(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
+      req.body.projectId = req.params.projectId
+      req.body.backlogId = req.params.backlogId
       logger.log('who is the user?', req.userInfo)
       req.body.creatorId = req.userInfo.id
       const task = await tasksService.createTask(req.body)
@@ -46,6 +49,9 @@ export class TasksController extends BaseController {
 
   async removeTask(req, res, next) {
     try {
+      req.body.creatorId = req.userInfo.id
+      req.body.projectId = req.params.projectId
+      req.body.backlogId = req.params.backlogId
       const task = await tasksService.removeTask(req.params.taskId, req.userInfo.id)
       res.send(task)
     } catch (error) {

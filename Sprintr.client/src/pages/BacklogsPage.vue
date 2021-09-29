@@ -38,7 +38,8 @@ export default {
       backlogs: computed(() => AppState.backlogs),
       backlog: computed(() => AppState.backlog),
       project: computed(() => AppState.project),
-      projects: computed(() => AppState.projects)
+      projects: computed(() => AppState.projects),
+      task: computed(() => AppState.tasks)
     }
   }
 }

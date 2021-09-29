@@ -16,7 +16,7 @@
              class="form-control"
              maxlength="150"
              placeholder="Weight"
-             v-model="editable.description"
+             v-model="editable.weight"
              required
       >
     </div>
@@ -33,12 +33,17 @@ import { Modal } from 'bootstrap'
 import Pop from '../utils/Pop.js'
 import { ref } from '@vue/reactivity'
 import { tasksService } from '../services/TasksService.js'
-import { router } from '../router.js'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger.js'
 
 export default {
-  setup() {
+  props: {
+    backlog: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
     const route = useRoute()
     const editable = ref({})
     return {
@@ -47,8 +52,9 @@ export default {
       async createTask() {
         try {
           if (editable.value.id) {
-            await tasksService.editTask(editable.value)
+            await tasksService.editTask()
           } else {
+            editable.value.backlogItemId = props.backlog.id
             await tasksService.createTask(route.params.projectId, editable.value)
             // router.push({ name: 'Task', params: { taskId: id } })
           }

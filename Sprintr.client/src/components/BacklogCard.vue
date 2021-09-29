@@ -12,18 +12,24 @@
         </h2>
       </div>
       <div class="col-6 mt-3">
-        <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeBacklog()" title="Delete Backlog Item">
+        <button class="btn btn-dark text-light hoverable mx-2" @click="removeBacklog()" title="Delete Backlog Item">
           <i class="fa fa-trash text-dark"></i>
           Delete
         </button>
-        <!-- <button class="btn btn-info text-white mx-2" data-toggle="modal" :data-target="'#create-task' + backlog.id" title="Create New Task">
-          + Add Task
-        </button> -->Add
+        <button class="btn btn-dark text-light mx-2" data-bs-toggle="modal" data-bs-target="#task-form" title="Create New Task" type="submit">
+          Add Task
+        </button>
       </div>
     </div>
-    <!-- <TasksThread :tasks="tasks" /> -->Task
-    <!-- <CreateTaskModal :backlog-item="backlogItem" /> -->Create
   </div>
+  <TaskModal>
+    <template #modal-title>
+      <h4>Task Form</h4>
+    </template>
+    <template #modal-body>
+      <TaskForm :backlog="backlog" />
+    </template>
+  </TaskModal>
 </template>
 
 <script>
@@ -63,6 +69,7 @@ export default {
           const yes = await Pop.confirm('Are you positive?')
           if (!yes) { return }
           logger.log('This is on the backlog Card', props.backlog.id)
+          // NOTE Supplay all arguments!! and all id's!!! vvv              vvvv
           await backlogsService.removeBacklog(route.params.projectId, props.backlog.id)
           Pop.toast('Deleted', 'success')
         } catch (error) {
