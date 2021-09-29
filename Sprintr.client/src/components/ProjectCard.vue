@@ -5,6 +5,7 @@
       <router-link :to="{name: 'Project', params: {projectId: project.id}}" class="selectable">
         Take me to project
       </router-link>
+      <!-- <img :src="project.creator.picture" height="45"> -->
     </div>
   </div>
 </template>
