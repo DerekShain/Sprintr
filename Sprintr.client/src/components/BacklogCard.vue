@@ -63,7 +63,7 @@ export default {
           const yes = await Pop.confirm('Are you positive?')
           if (!yes) { return }
           logger.log('This is on the backlog Card', props.backlog.id)
-          await backlogsService.removeBacklog(route.params.projectId)
+          await backlogsService.removeBacklog(route.params.projectId, props.backlog.id)
           Pop.toast('Deleted', 'success')
         } catch (error) {
           Pop.toast(error, 'error')

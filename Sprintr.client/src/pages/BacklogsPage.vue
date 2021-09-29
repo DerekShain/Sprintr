@@ -31,7 +31,7 @@ export default {
       try {
         await backlogsService.getBacklogs(route.params.projectId)
       } catch (error) {
-        Pop.toast(error, 'error on the backlog page')
+        Pop.toast('error on the backlog page', error)
       }
     })
     return {

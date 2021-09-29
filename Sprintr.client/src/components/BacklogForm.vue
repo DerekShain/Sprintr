@@ -47,6 +47,7 @@ import { ref } from '@vue/reactivity'
 import { backlogsService } from '../services/BacklogsService.js'
 import { router } from '../router.js'
 import { useRoute } from 'vue-router'
+import { logger } from '../utils/Logger.js'
 
 export default {
   setup() {
@@ -60,8 +61,8 @@ export default {
           if (editable.value.id) {
             await backlogsService.editBacklog(editable.value)
           } else {
-            const id = await backlogsService.createBacklog(route.params.projectId, editable.value)
-            router.push({ name: 'Backlog', params: { backlogId: id } })
+            await backlogsService.createBacklog(route.params.projectId, editable.value)
+            // router.push({ name: 'Backlog', params: { backlogId: id } })
           }
           editable.value = {}
           Pop.toast('Noice!', 'success')
@@ -69,6 +70,7 @@ export default {
           modal.hide()
         } catch (error) {
           Pop.toast(error, 'error')
+          logger.log('this is the create backlog error', error)
         }
       }
     }
