@@ -19,6 +19,40 @@
         <button class="btn btn-dark text-light mx-2" data-bs-toggle="modal" data-bs-target="#task-form" title="Create New Task" type="submit">
           Add Task
         </button>
+        <!-- NOTE Buttons to expand menus -->
+        <div class="Info p-2">
+          <p>
+            <a class="btn btn-primary"
+               data-bs-toggle="collapse"
+               href="#collapseExample"
+               role="button"
+               aria-expanded="false"
+               aria-controls="collapseExample"
+            >
+              Notes
+            </a>
+            <button class="btn btn-primary"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample2"
+                    aria-expanded="false"
+                    aria-controls="collapseExample2"
+                    :backlog="backlog"
+            >
+              Tasks
+            </button>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+              test
+            </div>
+          </div>
+          <div class="collapse" id="collapseExample2">
+            <div class="card card-body">
+              test2
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

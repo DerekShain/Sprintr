@@ -21,6 +21,7 @@ const routes = [
     path: '/projects/:projectId',
     name: 'Project',
     component: loadPage('ProjectPage'),
+    beforeEnter: authGuard,
     children: [
       {
         path: 'backlog',
