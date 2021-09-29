@@ -3,7 +3,11 @@
     <div class="card">
       {{ project.name }}
       <p>{{ project.description }}</p>
+      <router-link :to="{name:'Project.Backlog'}" class="text-dark lighten-30">
+        Backlogs
+      </router-link>
     </div>
+    <router-view />
   </div>
 </template>
 
