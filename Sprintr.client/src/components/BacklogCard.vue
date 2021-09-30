@@ -105,9 +105,10 @@ export default {
   },
   setup(props) {
     const route = useRoute()
-    onMounted(async() => {
+    onMounted(async(taskId) => {
       try {
         // await tasksService.getTaskById(route.params.backlogId)
+        // AppState.task = AppState.task.filter(t => t.id !== taskId)
       } catch (error) {
         Pop.toast('Error grabbing tasks', error)
       }
@@ -116,6 +117,7 @@ export default {
       route,
       account: computed(() => AppState.account),
       tasks: computed(() => AppState.tasks),
+      task: computed(() => AppState.task.filter(t => t.id === props.backlog.id)),
       notes: computed(() => AppState.notes),
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
