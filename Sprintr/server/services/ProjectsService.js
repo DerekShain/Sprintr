@@ -3,7 +3,7 @@ import { BadRequest, Forbidden } from '../utils/Errors.js'
 
 class ProjectsService {
   async getProjectById(projectId) {
-    const project = await dbContext.Projects.findById(projectId)
+    const project = await dbContext.Projects.findById(projectId).populate('creator', 'name picture')
     if (!project) {
       throw new BadRequest('Invalid Project Id')
     }
@@ -34,11 +34,12 @@ class ProjectsService {
 
   async createProject(projectData) {
     const project = await dbContext.Projects.create(projectData)
+    await project.populate('creator', 'name picture')
     return project
   }
 
   async getProjects(query) {
-    const projects = await dbContext.Projects.find(query)
+    const projects = await dbContext.Projects.find(query).populate('creator', 'name picture')
     return projects
   }
 }
