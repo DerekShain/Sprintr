@@ -32,12 +32,17 @@ class TasksService {
     await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
     // NOTE vvv dont forget this to filter everything
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
-    // this.totalWeight()
   }
 
-  // async getBacklogTask(projectId, taskId) {
-  //   const res = await api.get(`api/projects/${projectId}/tasks/${taskId}`)
-  //   AppState.backlogs = res.data
-  // }
+  async toggleComplete(projectId, taskId, task) {
+    const tasks = AppState.tasks.filter(t => t.id === taskId)
+    logger.log(tasks)
+    if (task.checked === 'unchecked') {
+      task.checked = 'checked'
+    } else {
+      task.checked = 'unchecked'
+    }
+    AppState.tasks = AppState.tasks.filter(t => t.id === taskId)
+  }
 }
 export const tasksService = new TasksService()

@@ -2,21 +2,21 @@
   <div class="card">
     <h5 class="card-header">
       {{ task.name }}
-      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
+      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" v-if="account.id == project.creatorId" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
     </h5>
     <div class="card-body">
       <h5 class="card-title">
         {{ task.weight }}
       </h5>
       <p class="card-text">
-        {{ task.isComplete }}
+        <input type="checkbox" @click.prevent="completeTask()">
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed, onMounted, ref } from '@vue/runtime-core'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
@@ -31,6 +31,7 @@ export default {
   },
   setup(props) {
     const route = useRoute()
+    const editable = ref({})
     onMounted(async() => {
       try {
         // await tasksService.getTasks(route.params.backlogId)
@@ -40,6 +41,7 @@ export default {
     })
     return {
       route,
+      editable,
       account: computed(() => AppState.account),
       tasks: computed(() => AppState.tasks),
       backlog: computed(() => AppState.backlog),
@@ -57,10 +59,19 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
+      },
+      async completeTask() {
+        try {
+          // NOTE Supplay all arguments!! and all id's!!! vvv              vvvv
+          await tasksService.toggleComplete(route.params.projectId, props.task.id, route.params.backlogItemId)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
       }
     }
   }
 }
+// dig in to object.. grab task, edit, then ship
 </script>
 
 <style lang="scss" scoped>
