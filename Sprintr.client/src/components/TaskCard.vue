@@ -2,15 +2,22 @@
   <div class="card">
     <h5 class="card-header">
       {{ task.name }}
-      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" v-if="account.id == project.creatorId" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
+      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
     </h5>
     <div class="card-body">
       <h5 class="card-title">
         {{ task.weight }}
       </h5>
       <p class="card-text">
-        <input type="checkbox" @click.prevent="completeTask()">
-      </p>
+        <button class="btn btn-dark text-light" @click="completeTask()">
+          Completed?
+        </button>
+      </p><div class="" v-if="task.isComplete === false">
+        Nope
+      </div>
+      <div class="" v-else>
+        Yup
+      </div>
     </div>
   </div>
 </template>
