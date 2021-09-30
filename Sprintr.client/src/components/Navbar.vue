@@ -30,6 +30,11 @@
             About
           </router-link>
         </li>
+        <li>
+          <button class="btn btn-dark text-light " type="submit" data-bs-toggle="modal" data-bs-target="#project-form">
+            Create Project
+          </button>
+        </li>
       </ul>
       <span class="navbar-text">
         <button
