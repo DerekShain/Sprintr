@@ -47,10 +47,20 @@ import { ref } from '@vue/reactivity'
 import { backlogsService } from '../services/BacklogsService.js'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger.js'
+import { computed, onMounted } from '@vue/runtime-core'
+import { sprintsService } from '../services/SprintsService.js'
+import { AppState } from '../AppState.js'
 
 export default {
   setup() {
     const route = useRoute()
+    onMounted(async() => {
+      try {
+        await sprintsService.getSprints(route.params.projectId)
+      } catch (error) {
+        Pop.toast('errror with the backlogform', error)
+      }
+    })
     const editable = ref({})
     return {
       editable,

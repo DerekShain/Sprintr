@@ -4,7 +4,7 @@
       <div class="col-6">
         <h1>Sprint: {{ sprint.name }}</h1>
       </div>
-      <div class="backlogList">
+      <!-- <div class="backlogList">
         <form @submit.prevent="getBacklogById()">
           <div class="form-group">
             <label class="pr-2" for="backlog-sprint-select">Select a backlog item</label>
@@ -26,7 +26,7 @@
             </button>
           </div>
         </form>
-      </div>
+      </div> -->
       <div class="col-6 mt-3">
         <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeSprint()" title="Sprint">
           <i class="fa fa-trash text-dark"></i>
@@ -80,10 +80,8 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
-      },
-      async getBacklogById() {
-
       }
+
     }
   }
 }

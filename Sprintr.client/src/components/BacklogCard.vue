@@ -29,6 +29,18 @@
             Notes
           </button>
         </li>
+        <li class="nav-item mx-1">
+          <button :id="'sprint-navbutton-'+backlog.id"
+                  class="btn btn-dark text-light"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  :data-bs-target="'#collapseExample3-'+backlog.id"
+                  aria-expanded="false"
+                  aria-controls="collapseExample3"
+          >
+            Sprints
+          </button>
+        </li>
         <li class="nav-item justify-content-end mx-1">
           <button class="btn btn-dark text-light" disabled>
             Total Weight: {{ totalWeight }}
@@ -59,6 +71,24 @@
             <i class="mdi mdi-plus-box text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#task-form-'+backlog.id" title="Create New Task" type="submit"> Add New Task</i><br />
             <div class="task-list">
               <TaskCard v-for="t in tasks" :key="t.id" :task="t" />
+            </div>
+          </div>
+        </div>
+        <div class="collapse" :id="'collapseExample3-'+backlog.id">
+          <div class="card card-body">
+            <!-- <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#sprintselect-'+backlog.id" title="Select a Sprint" type="submit">Select a Sprint</i><br /> -->
+            <div class="form-group">
+              <select name="sprintselect"
+                      id="sprintselect"
+                      required
+                      class="form-control"
+              >
+                <option v-for="s in sprints"
+                        :key="s.name"
+                >
+                  {{ s.name }}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -101,6 +131,7 @@ export default {
     const route = useRoute()
     return {
       route,
+      sprints: computed(() => AppState.sprints),
       account: computed(() => AppState.account),
       // NOTE vvvvvvvv FILTERING!!!
       tasks: computed(() => AppState.tasks.filter(task => task.backlogId === props.backlog.id)),
