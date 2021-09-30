@@ -1,23 +1,24 @@
 <template>
   <div class="card">
-    <h5 class="card-header">
-      {{ task.name }}
-      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" v-if="account.id == task.creatorId" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
-    </h5>
+    <div class="header">
+      <h5 class="card-header" v-if="task.isComplete === false" style="background: red">
+        {{ task.name }} needs to be worked on.
+        <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" v-if="account.id == task.creatorId" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
+      </h5>
+    </div>
+    <div class="header" v-if="task.isComplete === true" style="background: green">
+      <h5 class="card-header">
+        {{ task.name }} has been completed!!
+        <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" v-if="account.id == task.creatorId" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
+      </h5>
+    </div>
     <div class="card-body">
       <h5 class="card-title">
         {{ task.weight }}
       </h5>
-      <p class="card-text">
-        <button class="btn btn-dark text-light" @click="completeTask()">
-          Completed?
-        </button>
-      </p><div class="" v-if="task.isComplete === false">
-        Nope
-      </div>
-      <div class="" v-else>
-        Yup
-      </div>
+      <button class="btn btn-dark text-light" @click="completeTask()">
+        Have you completed the task?
+      </button>
     </div>
   </div>
 </template>
@@ -73,6 +74,7 @@ export default {
           await tasksService.toggleComplete(route.params.projectId, props.task.id, route.params.backlogItemId)
         } catch (error) {
           Pop.toast(error, 'error')
+          logger.error(error)
         }
       }
     }

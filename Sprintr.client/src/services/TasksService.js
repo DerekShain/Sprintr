@@ -32,12 +32,20 @@ class TasksService {
     await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
     // NOTE vvv dont forget this to filter everything
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
-    // this.totalWeight()
   }
 
-  // async getBacklogTask(projectId, taskId) {
-  //   const res = await api.get(`api/projects/${projectId}/tasks/${taskId}`)
-  //   AppState.backlogs = res.data
-  // }
+  async toggleComplete(projectId, taskId) {
+    const task = AppState.tasks.find(t => t.id === taskId)
+    logger.log(task)
+    // NOTE vvv can use this
+    // if (task.isComplete === false) {
+    //   task.isComplete = true
+    // } else {
+    //   task.isComplete = false
+    // }
+    // NOTE vvv or line 47. 48 needs to say.
+    task.isComplete = !task.isComplete
+    await api.put(`api/projects/${projectId}/tasks/${taskId}`, task)
+  }
 }
 export const tasksService = new TasksService()
