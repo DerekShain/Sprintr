@@ -44,8 +44,8 @@ export default {
           if (editable.value.id) {
             await notesService.editNote()
           } else {
-            editable.value.backlogId = props.backlog.id
-            await notesService.createNote(route.params.projectId, editable.value)
+            editable.value.backlogItemId = props.backlog.id
+            await notesService.createNote(route.params.projectId, props.backlog.id, editable.value)
           }
           editable.value = {}
           Pop.toast('Noice!', 'success')

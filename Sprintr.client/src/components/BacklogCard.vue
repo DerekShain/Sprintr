@@ -51,7 +51,7 @@
             <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#note-form-'+ backlog.id" title="Create New Note" type="submit"> Add a Note</i><br />
           </div>
           <div class="note-list">
-            <NoteCard v-for="n in note" :key="n.id" :note="n" />
+            <NoteCard v-for="n in notes" :key="n.id" :note="n" />
           </div>
         </div>
         <div class="collapse" id="collapseExample2">
@@ -73,7 +73,7 @@
       <TaskForm :backlog="backlog" />
     </template>
   </TaskModal>
-  <NoteModal>
+  <NoteModal :id="'note-form-'+backlog.id">
     <template #modal-title>
       <h4>Note Form</h4>
     </template>
@@ -119,7 +119,8 @@ export default {
       // NOTE vvvvvvvv FILTERING!!!
       tasks: computed(() => AppState.tasks.filter(task => task.backlogId === props.backlog.id)),
       task: computed(() => AppState.task),
-      notes: computed(() => AppState.notes),
+      notes: computed(() => AppState.notes.filter(note => note.backlogId === props.backlog.id)),
+      note: computed(() => AppState.note),
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects),

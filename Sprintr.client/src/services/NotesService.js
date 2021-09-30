@@ -1,5 +1,6 @@
 import { AppState } from '../AppState.js'
 import { Note } from '../models/Note.js'
+import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class NotesService {
@@ -15,9 +16,11 @@ class NotesService {
     AppState.note = new Note(res.data)
   }
 
-  async createNote(projectId, note) {
+  async createNote(projectId, backlogId, note) {
     const res = await api.post(`api/projects/${projectId}/notes`, note)
-    AppState.notes.push(new Note(res.data, projectId))
+    AppState.notes.push(new Note(res.data, projectId, backlogId))
+    logger.log('create note res', res)
+    return res.data.id
   }
 
   async removeNote(projectId, noteId) {
