@@ -46,7 +46,7 @@
       </p>
       <!-- NOTE These are the dropdowns -->
       <div class="Info p-2">
-        <div class="collapse" :id="'#collapseExample-'+backlog.id">
+        <div class="collapse" :id="'collapseExample-'+backlog.id">
           <div class="card card-body">
             <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#note-form-'+backlog.id" title="Create New Note" type="submit"> Add a Note</i><br />
           </div>
