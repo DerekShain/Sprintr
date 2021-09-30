@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
@@ -31,13 +31,13 @@ export default {
   },
   setup(props) {
     const route = useRoute()
-    // onMounted(async() => {
-    //   try {
-    //     await tasksService.getBacklogTask(props.backlog.id)
-    //   } catch (error) {
-    //     Pop.toast(error, 'error')
-    //   }
-    // })
+    onMounted(async() => {
+      try {
+        await tasksService.getTasks(route.params.backlogId)
+      } catch (error) {
+        Pop.toast('Error grabbing tasks', error)
+      }
+    })
     return {
       route,
       account: computed(() => AppState.account),

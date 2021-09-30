@@ -9,7 +9,7 @@
       </p>
       Created on
       {{ new Date(project.createdAt).toLocaleString() }}
-      <i class="mdi mdi-delete-sweep text-secondary ps-3 f-18" aria-hidden="true" title="Delete Project" @click="removeProject"></i>
+      <i v-if="account.id == project.creatorId" class="mdi mdi-delete-sweep text-secondary ps-3 f-18" aria-hidden="true" title="Delete Project" @click="removeProject"></i>
       <router-view />
     </div>
   </div>

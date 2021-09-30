@@ -48,7 +48,7 @@
           </div>
           <div class="collapse" id="collapseExample2">
             <div class="card card-body">
-              <!-- <TaskCard v-for="b in tasks" :key="b.id" :task="b" /> -->
+              <TaskCard v-for="t in tasks" :key="t.id" :task="t" />
             </div>
           </div>
         </div>
@@ -87,14 +87,13 @@ export default {
   },
   setup(props) {
     const route = useRoute()
-    // onMounted(async() => {
-    //   try {
-    //     // debugger
-    //     await tasksService.getBacklogTask(route.params.projectId, route.params.backlogId, props.task.id)
-    //   } catch (error) {
-    //     Pop.toast(error, 'error')
-    //   }
-    // })
+    onMounted(async() => {
+      try {
+        await tasksService.getTasks(route.params.backlogId)
+      } catch (error) {
+        Pop.toast('Error grabbing tasks', error)
+      }
+    })
     return {
       route,
       account: computed(() => AppState.account),
