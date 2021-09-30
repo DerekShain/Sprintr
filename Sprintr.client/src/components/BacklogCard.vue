@@ -6,10 +6,11 @@
           <img :src="project.creator.picture" class="rounded-circle" height="45" alt="">
         </div>
         <li class="nav-item mx-1">
-          <button class="btn btn-dark text-light"
+          <button :id="'task-navbutton-'+backlog.id"
+                  class="btn btn-dark text-light"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseExample2"
+                  :data-bs-target="'#collapseExample2-'+backlog.id"
                   aria-expanded="false"
                   aria-controls="collapseExample2"
           >
@@ -54,7 +55,7 @@
             <NoteCard v-for="n in notes" :key="n.id" :note="n" />
           </div>
         </div>
-        <div class="collapse" id="collapseExample2">
+        <div class="collapse" :id="'collapseExample2-'+backlog.id">
           <div class="card card-body">
             <i class="mdi mdi-plus-box text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#task-form-'+backlog.id" title="Create New Task" type="submit"> Add New Task</i><br />
             <div class="task-list">
