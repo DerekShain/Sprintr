@@ -3,7 +3,7 @@
     <h5 class="card-header">
       <img :src="note.creator.picture" class="rounded-circle" height="45" alt="">
       {{ note.creator.name }}
-      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" aria-hidden="true" title="Delete Note" @click="removeNote()"></i><br />
+      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" v-if="account.id == note.creatorId" aria-hidden="true" title="Delete Note" @click="removeNote()"></i><br />
     </h5>
     <div class="card-body">
       <h5 class="card-title">

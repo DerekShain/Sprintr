@@ -34,15 +34,18 @@ class TasksService {
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
   }
 
-  async toggleComplete(projectId, taskId, task) {
-    const tasks = AppState.tasks.filter(t => t.id === taskId)
-    logger.log(tasks)
-    if (task.checked === 'unchecked') {
-      task.checked = 'checked'
-    } else {
-      task.checked = 'unchecked'
-    }
-    AppState.tasks = AppState.tasks.filter(t => t.id === taskId)
+  async toggleComplete(projectId, taskId) {
+    const task = AppState.tasks.find(t => t.id === taskId)
+    logger.log(task)
+    // NOTE vvv can use this
+    // if (task.isComplete === false) {
+    //   task.isComplete = true
+    // } else {
+    //   task.isComplete = false
+    // }
+    // NOTE vvv or line 47. 48 needs to say.
+    task.isComplete = !task.isComplete
+    await api.put(`api/projects/${projectId}/tasks/${taskId}`, task)
   }
 }
 export const tasksService = new TasksService()
