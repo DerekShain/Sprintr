@@ -8,35 +8,17 @@ class TasksService {
     AppState.tasks = []
     const res = await api.get(`api/projects/${projectId}/tasks` + query)
     AppState.tasks = res.data.map(t => new Task(t))
-    this.totalWeight()
-  }
-
-  totalWeight() {
-    let weight = 0
-    let tasks = []
-    for (let i = 0; i < AppState.backlogs.length; i++) {
-      tasks = AppState.tasks.filter(t => t.backlogId === AppState.backlogs[i].id)
-      for (let i = 0; i < tasks.length; i++) {
-        weight += tasks[i].weight
-      }
-      AppState.backlogs[i].totalWeight = weight
-      weight = 0
-    }
-    AppState.backlogs.totalWeight = weight
-    logger.log('total Weight', AppState.backlogs)
   }
 
   async getTaskById(projectId, taskId) {
     AppState.task = null
     const res = await api.get(`api/projects/${projectId}/tasks/${taskId}`)
     AppState.task = new Task(res.data)
-    this.totalWeight()
   }
 
   async createTask(projectId, backlogId, task) {
     const res = await api.post(`api/projects/${projectId}/tasks`, task)
     AppState.tasks.push(new Task(res.data, projectId, backlogId))
-    this.totalWeight()
     logger.log('create task res', res)
     return res.data.id
   }
@@ -44,14 +26,13 @@ class TasksService {
   async editTask(projectId, task) {
     const res = await api.put(`api/projects/${projectId}/tasks/${task.id}`, task)
     AppState.task = new Task(res.data)
-    this.totalWeight()
   }
 
   async removeTask(projectId, taskId) {
     await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
     // NOTE vvv dont forget this to filter everything
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
-    this.totalWeight()
+    // this.totalWeight()
   }
 
   // async getBacklogTask(projectId, taskId) {
