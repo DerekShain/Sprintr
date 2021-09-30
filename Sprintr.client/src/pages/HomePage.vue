@@ -7,7 +7,7 @@
         </button>
       </div>
       <div class="d-flex flex-column align-items-center">
-        <ProjectCard v-for="p in projects" :key="p.id" :project="p" />
+        <ProjectCard v-for="p in projects" :key="p.id" :project="p" class="m-2" />
       </div>
     </div>
   </div>

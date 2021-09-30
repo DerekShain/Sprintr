@@ -1,7 +1,9 @@
 <template>
   <div class="backlogs">
-    <h1> This is a test for the backlog</h1>
-    <button class="btn btn-primary " type="submit" data-bs-toggle="modal" data-bs-target="#backlog-form">
+    <h1 class="text-center">
+      {{ project.name }} Backlogs
+    </h1>
+    <button class="btn btn-dark text-light" type="submit" data-bs-toggle="modal" data-bs-target="#backlog-form">
       Add Backlog item
     </button>
     <div class="backlogList">

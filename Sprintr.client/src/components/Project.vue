@@ -1,5 +1,5 @@
 <template>
-  <div class=" text-center">
+  <!-- <div class=" text-center">
     <div class="card-body" style="width: 50vw">
       <h5 class="card-title">
         {{ project.name }}
@@ -7,10 +7,31 @@
       <p class="card-text">
         {{ project.description }}
       </p>
-      Created on
-      {{ new Date(project.createdAt).toLocaleString() }}
+      <small> Created on {{ new Date(project.createdAt).toLocaleDateString() }} at {{ new Date(project.createdAt).toLocaleTimeString() }}</small>
       <i v-if="account.id == project.creatorId" class="mdi mdi-delete-sweep text-secondary ps-3 f-18" aria-hidden="true" title="Delete Project" @click="removeProject"></i>
       <router-view />
+    </div>
+  </div> -->
+
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../assets/img/next.png" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ project.name }}
+          </h5>
+          <p class="card-text">
+            {{ project.description }}
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Created on {{ new Date(project.createdAt).toLocaleDateString() }} at {{ new Date(project.createdAt).toLocaleTimeString() }}</small>
+            <i v-if="account.id == project.creatorId" class="mdi mdi-delete-sweep text-secondary ps-3 f-18" aria-hidden="true" title="Delete Project" @click="removeProject"></i>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="custom-bg">
     <router-view />
   </main>
   <footer>
@@ -23,5 +23,14 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
-
+.custom-bg{
+  background: url('./assets/img/Animation.gif');
+  background-attachment: fixed;
+}
+  //  /* .row{
+  //           height: 100px;
+  //       } */
+  //   *{
+  //       outline: red solid 1px;
+  //   }
 </style>
