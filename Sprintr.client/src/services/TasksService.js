@@ -34,9 +34,9 @@ class TasksService {
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
   }
 
-  async getBacklogTask(projectId, taskId) {
-    const res = await api.get(`api/projects/${projectId}/tasks/${taskId}`)
-    AppState.backlogs = res.data
-  }
+  // async getBacklogTask(projectId, taskId) {
+  //   const res = await api.get(`api/projects/${projectId}/tasks/${taskId}`)
+  //   AppState.backlogs = res.data
+  // }
 }
 export const tasksService = new TasksService()

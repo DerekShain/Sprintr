@@ -46,7 +46,7 @@ export default {
           const yes = await Pop.confirm('Are you positive?')
           if (!yes) { return }
           logger.log('This is on the backlog Card', props.note.id)
-          await notesService.removeNote(route.params.projectId, props.note.id)
+          await notesService.removeNote(route.params.projectId, route.params.backlogId, props.note.id)
           Pop.toast('Deleted', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
