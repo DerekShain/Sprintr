@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { backlogsService } from '../services/BacklogsService'
 import Pop from '../utils/Pop'
@@ -96,21 +96,9 @@ export default {
       type: Object,
       required: true
     }
-    // task: {
-    //   type: Object,
-    //   required: true
-    // }
   },
   setup(props) {
     const route = useRoute()
-    onMounted(async(taskId) => {
-      try {
-        // await tasksService.getTaskById(route.params.backlogId)
-        // AppState.task = AppState.task.filter(t => t.id !== taskId)
-      } catch (error) {
-        Pop.toast('Error grabbing tasks', error)
-      }
-    })
     return {
       route,
       account: computed(() => AppState.account),
@@ -122,6 +110,14 @@ export default {
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects),
+      totalWeight: computed(() => {
+        let weight = 0
+        const tasks = AppState.tasks.filter(t => t.backlogId === props.backlog.id)
+        for (let i = 0; i < tasks.length; i++) {
+          weight += tasks[i].weight
+        }
+        return weight
+      }),
       async removeBacklog() {
         try {
           const yes = await Pop.confirm('Are you positive?')
@@ -133,20 +129,7 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
-      },
-      totalWeight: computed(() => {
-        let weight = 0
-        // let tasks = []
-        // for (let i = 0; i < AppState.backlogs.length; i++) {
-        const tasks = AppState.tasks.filter(t => t.backlogId === props.backlog.id)
-        for (let i = 0; i < tasks.length; i++) {
-          weight += tasks[i].weight
-        }
-        return weight
-        // }
-        // AppState.backlogs.totalWeight = weight
-        // logger.log('total Weight', AppState.backlogs)
-      })
+      }
     }
   }
 }
