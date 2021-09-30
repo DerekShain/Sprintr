@@ -3,6 +3,7 @@
     <h5 class="card-header">
       <img :src="note.creator.picture" class="rounded-circle" height="45" alt="">
       {{ note.creator.name }}
+      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" aria-hidden="true" title="Delete Note" @click="removeNote()"></i><br />
     </h5>
     <div class="card-body">
       <h5 class="card-title">
@@ -38,12 +39,12 @@ export default {
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects),
-      async removeBacklog() {
+      async removeNote() {
         try {
           const yes = await Pop.confirm('Are you positive?')
           if (!yes) { return }
           logger.log('This is on the backlog Card', props.note.id)
-          await notesService.removeNote(route.params.projectId, route.params.backlogId, props.note.id)
+          await notesService.removeNote(route.params.projectId, props.note.id, route.params.backlogItemId)
           Pop.toast('Deleted', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
