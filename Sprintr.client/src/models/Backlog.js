@@ -7,7 +7,6 @@ export class Backlog {
     this.sprintId = data.sprintId
     this.creatorId = data.creatorId || ''
     this.color = data.color
-    this.backlogId = data.backlogItemId
     this.id = data.id
     this.taskId = data.taskId
   }

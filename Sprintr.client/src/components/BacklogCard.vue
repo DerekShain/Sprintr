@@ -42,6 +42,8 @@
       <p class="card-text">
         {{ backlog.status }}
       </p>
+      <!-- <TaskCard v-for="t in tasks" :key="t.id" :task="t" />
+      <NoteCard v-for="n in notes" :key="n.id" :note="n" /> -->
       <!-- NOTE These are the dropdowns -->
       <div class="Info p-2">
         <div class="collapse" id="collapseExample">
@@ -49,13 +51,13 @@
             <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" data-bs-target="#note-form" title="Create New Note" type="submit"> Add a Note</i><br />
           </div>
           <div class="note-list">
-            <NoteCard v-for="t in tasks" :key="t.id" :task="t" />
+            <NoteCard v-for="n in note" :key="n.id" :note="n" />
           </div>
         </div>
         <div class="collapse" id="collapseExample2">
           <div class="card card-body">
             <i class="mdi mdi-plus-box text-secondary selectable f-18" data-bs-toggle="modal" data-bs-target="#task-form" title="Create New Task" type="submit"> Add New Task</i><br />
-            <div class="task-list">
+            <div class="task-list" v-if="task.backlogId === backlog.id">
               <TaskCard v-for="t in tasks" :key="t.id" :task="t" />
             </div>
           </div>
