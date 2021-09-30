@@ -3,7 +3,7 @@
     <div class="card-header">
       <ul class="nav nav-pills card-header-pills">
         <div class=" mx-1" v-if="project.creator">
-          <img :src="project.creator.picture" class="rounded-circle" height="45" alt="">
+          <img :src="backlog.creator.picture" class="rounded-circle" height="45" alt="">
         </div>
         <li class="nav-item mx-1">
           <button :id="'task-navbutton-'+backlog.id"
@@ -30,7 +30,7 @@
         </li>
         <li class="nav-item justify-content-end mx-1">
           <button class="btn btn-dark text-light" disabled>
-            Total Weight: {{ totalWeight }}
+            Total Weight: {{ backlog.totalWeight }}
           </button>
         </li>
       </ul>
@@ -91,8 +91,6 @@ import { backlogsService } from '../services/BacklogsService'
 import Pop from '../utils/Pop'
 import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
-import { tasksService } from '../services/TasksService'
-// import { tasksService } from '../services/TasksService'
 export default {
   props: {
     backlog: {
@@ -136,17 +134,7 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
-      },
-      totalWeight: computed(() => {
-        const tasks = AppState.tasks[props.backlog.id]
-        let totalWeight = 0
-        if (tasks) {
-          for (let i = 0; i < tasks.length; i++) {
-            totalWeight += tasks[i].weight
-          }
-        }
-        return totalWeight
-      })
+      }
     }
   }
 }

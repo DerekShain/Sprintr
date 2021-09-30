@@ -9,5 +9,7 @@ export class Backlog {
     this.color = data.color
     this.id = data.id
     this.taskId = data.taskId
+    this.creator = data.creator
+    this.totalWeight = data.totalWeight
   }
 }

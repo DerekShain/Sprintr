@@ -34,7 +34,10 @@ export class NotesController extends BaseController {
 
   async createNote(req, res, next) {
     try {
+      // NOTE vvvv had to fix this stuffs
       req.body.creatorId = req.userInfo.id
+      req.body.projectId = req.params.projectId
+      req.body.backlogId = req.params.backlogId
       const note = await notesService.createNote(req.body)
       note.creator = req.userInfo
       res.send(note)

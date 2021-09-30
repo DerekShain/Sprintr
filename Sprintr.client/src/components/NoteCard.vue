@@ -1,16 +1,13 @@
 <template>
   <div class="card">
     <h5 class="card-header">
-      Test
+      <img :src="note.creator.picture" class="rounded-circle" height="45" alt="">
+      {{ note.creator.name }}
     </h5>
     <div class="card-body">
       <h5 class="card-title">
-        test
+        {{ note.body }}
       </h5>
-      <p class="card-text">
-        Test
-      </p>
-      <a href="#" class="btn btn-primary">Button</a>
     </div>
   </div>
 </template>
