@@ -4,7 +4,7 @@ export class Task {
     this.name = data.name
     this.weight = data.weight
     this.projectId = data.projectId
-    this.backlogItemId = data.backlogItemId
+    this.backlogId = data.backlogId
     this.creatorId = data.creatorId || ''
     this.isComplete = data.isComplete
     this.completeOn = data.completeOn
