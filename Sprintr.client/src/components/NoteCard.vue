@@ -36,7 +36,7 @@ export default {
     return {
       route,
       account: computed(() => AppState.account),
-      notes: computed(() => AppState.notes[props.backlog.id] || []),
+      notes: computed(() => AppState.notes),
       backlog: computed(() => AppState.backlog),
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),

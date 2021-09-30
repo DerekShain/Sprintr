@@ -41,7 +41,7 @@ export default {
     return {
       route,
       account: computed(() => AppState.account),
-      tasks: computed(() => AppState.tasks[props.backlog.id] || []),
+      tasks: computed(() => AppState.tasks),
       backlog: computed(() => AppState.backlog),
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),

@@ -48,7 +48,7 @@
       <div class="Info p-2">
         <div class="collapse" id="collapseExample">
           <div class="card card-body">
-            <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" data-bs-target="#note-form" title="Create New Note" type="submit"> Add a Note</i><br />
+            <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#note-form-'+ backlog.id" title="Create New Note" type="submit"> Add a Note</i><br />
           </div>
           <div class="note-list">
             <NoteCard v-for="n in note" :key="n.id" :note="n" />
@@ -56,7 +56,7 @@
         </div>
         <div class="collapse" id="collapseExample2">
           <div class="card card-body">
-            <i class="mdi mdi-plus-box text-secondary selectable f-18" data-bs-toggle="modal" data-bs-target="#task-form" title="Create New Task" type="submit"> Add New Task</i><br />
+            <i class="mdi mdi-plus-box text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#task-form-'+backlog.id" title="Create New Task" type="submit"> Add New Task</i><br />
             <div class="task-list">
               <TaskCard v-for="t in tasks" :key="t.id" :task="t" />
             </div>
@@ -65,7 +65,7 @@
       </div>
     </div>
   </div>
-  <TaskModal>
+  <TaskModal :id="'task-form-'+backlog.id">
     <template #modal-title>
       <h4>Task Form</h4>
     </template>
