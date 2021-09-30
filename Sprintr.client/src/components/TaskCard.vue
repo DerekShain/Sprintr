@@ -2,7 +2,7 @@
   <div class="card">
     <h5 class="card-header">
       {{ task.name }}
-      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
+      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" v-if="account.id == project.creatorId" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
     </h5>
     <div class="card-body">
       <h5 class="card-title">
