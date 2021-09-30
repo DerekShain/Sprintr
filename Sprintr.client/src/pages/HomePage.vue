@@ -38,6 +38,7 @@ export default {
       }
     })
     return {
+      account: computed(() => AppState.account),
       projects: computed(() => AppState.projects),
       project: computed(() => AppState.project)
     }

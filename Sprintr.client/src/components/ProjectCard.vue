@@ -5,7 +5,9 @@
       <router-link :to="{name: 'Project', params: {projectId: project.id}}" class="selectable">
         Take me to project
       </router-link>
-      <!-- <img :src="project.creator.picture" height="45"> -->
+      <div class="col-2" v-if="project.creator">
+        <img :src="project.creator.picture" height="45">
+      </div>
     </div>
   </div>
 </template>
@@ -13,10 +15,11 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { Project } from '../models/Project'
 export default {
   props: {
     project: {
-      type: Object,
+      type: Project,
       required: true
     }
   },

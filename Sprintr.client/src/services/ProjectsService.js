@@ -20,9 +20,9 @@ class ProjectsService {
     AppState.project = new Project(res.data)
   }
 
-  async getProjects(query = {}) {
+  async getProjects() {
     AppState.projects = []
-    const res = await api.get('api/projects' + convertToQuery(query))
+    const res = await api.get('api/projects')
     logger.log('project res', res)
     AppState.projects = res.data.map(p => new Project(p))
   }
