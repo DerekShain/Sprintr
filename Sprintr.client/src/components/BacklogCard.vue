@@ -31,7 +31,7 @@
         </li>
         <li class="nav-item justify-content-end mx-1">
           <button class="btn btn-dark text-light" disabled>
-            Total Weight: {{ backlog.totalWeight }}
+            Total Weight: {{ totalWeight }}
           </button>
         </li>
       </ul>
@@ -135,7 +135,20 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
-      }
+      },
+      totalWeight: computed(() => {
+        let weight = 0
+        // let tasks = []
+        // for (let i = 0; i < AppState.backlogs.length; i++) {
+        const tasks = AppState.tasks.filter(t => t.backlogId === props.backlog.id)
+        for (let i = 0; i < tasks.length; i++) {
+          weight += tasks[i].weight
+        }
+        return weight
+        // }
+        // AppState.backlogs.totalWeight = weight
+        // logger.log('total Weight', AppState.backlogs)
+      })
     }
   }
 }
