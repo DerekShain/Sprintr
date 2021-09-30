@@ -43,8 +43,6 @@
       <p class="card-text">
         {{ backlog.status }}
       </p>
-      <!-- <TaskCard v-for="t in tasks" :key="t.id" :task="t" />
-      <NoteCard v-for="n in notes" :key="n.id" :note="n" /> -->
       <!-- NOTE These are the dropdowns -->
       <div class="Info p-2">
         <div class="collapse" :id="'#collapseExample-'+backlog.id">

@@ -49,7 +49,7 @@ export default {
           }
           editable.value = {}
           Pop.toast('Noice!', 'success')
-          const modal = Modal.getInstance(document.getElementById('note-form'))
+          const modal = Modal.getInstance(document.getElementById('note-form-' + props.backlog.id))
           modal.hide()
         } catch (error) {
           Pop.toast(error, 'error')

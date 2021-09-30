@@ -61,8 +61,8 @@ export default {
           }
           editable.value = {}
           Pop.toast('Noice!', 'success')
-          const modal = Modal.getInstance(document.getElementById('task-form'))
-          // modal.hide()
+          const modal = Modal.getInstance(document.getElementById('task-form-' + props.backlog.id))
+          modal.hide()
         } catch (error) {
           Pop.toast(error, 'error')
           logger.log('this is the create task error', error)
