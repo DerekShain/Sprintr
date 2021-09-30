@@ -21,7 +21,7 @@
           <button class="btn btn-dark text-light"
                   type="button"
                   data-bs-toggle="collapse"
-                  data-bs-target="#collapseExample"
+                  :data-bs-target="'#collapseExample-'+backlog.id"
                   aria-expanded="false"
                   aria-controls="collapseExample"
           >
@@ -47,7 +47,7 @@
       <NoteCard v-for="n in notes" :key="n.id" :note="n" /> -->
       <!-- NOTE These are the dropdowns -->
       <div class="Info p-2">
-        <div class="collapse" id="collapseExample">
+        <div class="collapse" :id="'#collapseExample-'+backlog.id">
           <div class="card card-body">
             <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" :data-bs-target="'#note-form-'+ backlog.id" title="Create New Note" type="submit"> Add a Note</i><br />
           </div>
