@@ -37,9 +37,8 @@
                     data-bs-target="#collapseExample2"
                     aria-expanded="false"
                     aria-controls="collapseExample2"
-                    :backlog="backlog"
             >
-              Tasks
+              Task
             </button>
           </p>
           <div class="collapse" id="collapseExample">
@@ -49,7 +48,7 @@
           </div>
           <div class="collapse" id="collapseExample2">
             <div class="card card-body">
-              test2
+              <!-- <TaskCard v-for="b in tasks" :key="b.id" :task="b" /> -->
             </div>
           </div>
         </div>
@@ -73,6 +72,7 @@ import { backlogsService } from '../services/BacklogsService'
 import Pop from '../utils/Pop'
 import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
+import { tasksService } from '../services/TasksService'
 // import { tasksService } from '../services/TasksService'
 export default {
   props: {
@@ -80,12 +80,17 @@ export default {
       type: Object,
       required: true
     }
+    // task: {
+    //   type: Object,
+    //   required: true
+    // }
   },
   setup(props) {
     const route = useRoute()
     // onMounted(async() => {
     //   try {
-    //     await tasksService.getBacklogTask(props.backlog.id)
+    //     // debugger
+    //     await tasksService.getBacklogTask(route.params.projectId, route.params.backlogId, props.task.id)
     //   } catch (error) {
     //     Pop.toast(error, 'error')
     //   }
@@ -98,6 +103,7 @@ export default {
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects),
+      task: computed(() => AppState.task),
       async removeBacklog() {
         try {
           const yes = await Pop.confirm('Are you positive?')

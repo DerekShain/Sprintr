@@ -54,7 +54,8 @@ export default {
           if (editable.value.id) {
             await tasksService.editTask()
           } else {
-            editable.value.backlogId = props.backlog.id
+            // NOTE VVV this has to be backlogItemId. its coming from the server like this.
+            editable.value.backlogItemId = props.backlog.id
             await tasksService.createTask(route.params.projectId, editable.value)
             // router.push({ name: 'Task', params: { taskId: id } })
           }

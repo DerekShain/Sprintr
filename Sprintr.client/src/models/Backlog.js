@@ -9,5 +9,6 @@ export class Backlog {
     this.color = data.color
     this.backlogId = data.backlogId
     this.id = data.id
+    this.taskId = data.taskId
   }
 }
