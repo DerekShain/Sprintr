@@ -3,12 +3,29 @@
     <div class="row bg-light">
       <div class="col-6">
         <h1>Sprint: {{ sprint.name }}</h1>
-        <!-- <h2>
-          <i class="fas fa-weight-hanging text-dark"></i>
-
-          <div class="mt-1">
+      </div>
+      <div class="backlogList">
+        <form @submit.prevent="getBacklogById()">
+          <div class="form-group">
+            <label class="pr-2" for="backlog-sprint-select">Select a backlog item</label>
+            <select name="backlogs"
+                    id="backlogs"
+                    required
+                    class="form-control"
+            >
+              <option v-for="b in backlogs"
+                      :key="b.name"
+              >
+                {{ b.name }} {{ b.id }}
+              </option>
+            </select>
           </div>
-        </h2> -->
+          <div class="form-group">
+            <button type="submit" class="btn btn-success mt-3">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
       <div class="col-6 mt-3">
         <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeSprint()" title="Sprint">
@@ -21,12 +38,13 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Pop.js'
 import { logger } from '../utils/Logger.js'
 import { sprintsService } from '../services/SprintsService.js'
 import { useRoute } from 'vue-router'
+import { backlogsService } from '../services/BacklogsService.js'
 
 export default {
   props: {
@@ -37,6 +55,13 @@ export default {
   },
   setup(props) {
     const route = useRoute()
+    onMounted(async() => {
+      try {
+        await backlogsService.getBacklogs(route.params.projectId)
+      } catch (error) {
+        Pop.toast('error on the backlog page', error)
+      }
+    })
     return {
       route,
       account: computed(() => AppState.account),
@@ -55,6 +80,9 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
+      },
+      async getBacklogById() {
+
       }
     }
   }
