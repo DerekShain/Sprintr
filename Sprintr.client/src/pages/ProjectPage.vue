@@ -62,6 +62,7 @@ import { useRoute } from 'vue-router'
 import { projectsService } from '../services/ProjectsService'
 import { tasksService } from '../services/TasksService'
 import { sprintsService } from '../services/SprintsService'
+import { notesService } from '../services/NotesService'
 export default {
   setup() {
     const route = useRoute()
@@ -69,12 +70,12 @@ export default {
       projectsService.getProjectById(route.params.projectId)
       tasksService.getTasks(route.params.backlogId)
       sprintsService.getSprints(route.params.projectId)
+      notesService.getNotes(route.params.backlogId)
     }
 
     )
     return {
       account: computed(() => AppState.account),
-      // projects: computed(() => AppState.projects),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects)
     }

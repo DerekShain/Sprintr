@@ -48,6 +48,9 @@
           <div class="card card-body">
             <i class="mdi mdi-message-bulleted text-secondary selectable f-18" data-bs-toggle="modal" data-bs-target="#note-form" title="Create New Note" type="submit"> Add a Note</i><br />
           </div>
+          <div class="note-list">
+            <NoteCard v-for="t in tasks" :key="t.id" :task="t" />
+          </div>
         </div>
         <div class="collapse" id="collapseExample2">
           <div class="card card-body">
@@ -68,6 +71,14 @@
       <TaskForm :backlog="backlog" />
     </template>
   </TaskModal>
+  <NoteModal>
+    <template #modal-title>
+      <h4>Note Form</h4>
+    </template>
+    <template #modal-body>
+      <NoteForm :backlog="backlog" />
+    </template>
+  </NoteModal>
 </template>
 
 <script>
@@ -103,6 +114,7 @@ export default {
       route,
       account: computed(() => AppState.account),
       tasks: computed(() => AppState.tasks),
+      notes: computed(() => AppState.notes),
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects),

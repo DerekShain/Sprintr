@@ -8,7 +8,7 @@
         {{ task.weight }}
       </h5>
       <p class="card-text">
-        <input type="checkbox" v-model="task.isComplete" placeholder="Completed?"> Check for yes <br />
+        {{ task.isComplete }}
       </p>
       <a href="#" class="btn btn-primary">Button</a>
     </div>
