@@ -30,8 +30,7 @@ class TasksService {
 
   async removeTask(projectId, taskId) {
     await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
-    AppState.task = null
-    AppState.tasks.filter(t => t.id !== taskId)
+    AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
   }
 
   async getBacklogTask(projectId, taskId) {
