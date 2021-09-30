@@ -5,5 +5,6 @@ export class Note {
     this.creatorId = data.creatorId || ''
     this.backlogId = data.backlogItemId
     this.projectId = data.projectId
+    this.creator = data.creator
   }
 }
