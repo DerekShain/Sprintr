@@ -2,6 +2,7 @@
   <div class="card">
     <h5 class="card-header">
       {{ task.name }}
+      <i class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" aria-hidden="true" title="Delete Task" @click="removeTask()"></i><br />
     </h5>
     <div class="card-body">
       <h5 class="card-title">
@@ -10,7 +11,6 @@
       <p class="card-text">
         {{ task.isComplete }}
       </p>
-      <a href="#" class="btn btn-primary">Button</a>
     </div>
   </div>
 </template>
@@ -52,7 +52,7 @@ export default {
           if (!yes) { return }
           logger.log('This is on the backlog Card', props.task.id)
           // NOTE Supplay all arguments!! and all id's!!! vvv              vvvv
-          await tasksService.removeTask(route.params.projectId, route.params.backlogId, props.task.id)
+          await tasksService.removeTask(route.params.projectId, props.task.id, route.params.backlogItemId)
           Pop.toast('Deleted', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
