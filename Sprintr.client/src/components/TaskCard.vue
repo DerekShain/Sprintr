@@ -46,7 +46,7 @@ export default {
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
       projects: computed(() => AppState.projects),
-      async removeBacklog() {
+      async removeTask() {
         try {
           const yes = await Pop.confirm('Are you positive?')
           if (!yes) { return }

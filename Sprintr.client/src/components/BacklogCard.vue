@@ -57,7 +57,7 @@
         <div class="collapse" id="collapseExample2">
           <div class="card card-body">
             <i class="mdi mdi-plus-box text-secondary selectable f-18" data-bs-toggle="modal" data-bs-target="#task-form" title="Create New Task" type="submit"> Add New Task</i><br />
-            <div class="task-list" v-if="task.backlogId === backlog.id">
+            <div class="task-list">
               <TaskCard v-for="t in tasks" :key="t.id" :task="t" />
             </div>
           </div>
@@ -107,7 +107,7 @@ export default {
     const route = useRoute()
     onMounted(async() => {
       try {
-        // await tasksService.getTasks(route.params.backlogId)
+        // await tasksService.getTaskById(route.params.backlogId)
       } catch (error) {
         Pop.toast('Error grabbing tasks', error)
       }
