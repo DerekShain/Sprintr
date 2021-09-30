@@ -3,7 +3,7 @@ export class Note {
     this.id = data.id
     this.body = data.body
     this.creatorId = data.creatorId || ''
-    this.backlogId = data.backlogId
+    this.backlogId = data.backlogItemId
     this.projectId = data.projectId
   }
 }

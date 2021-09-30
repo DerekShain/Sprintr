@@ -60,11 +60,17 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { useRoute } from 'vue-router'
 import { projectsService } from '../services/ProjectsService'
+import { tasksService } from '../services/TasksService'
+import { sprintsService } from '../services/SprintsService'
 export default {
   setup() {
     const route = useRoute()
-    onMounted(() =>
+    onMounted(() => {
       projectsService.getProjectById(route.params.projectId)
+      tasksService.getTasks(route.params.backlogId)
+      sprintsService.getSprints(route.params.projectId)
+    }
+
     )
     return {
       account: computed(() => AppState.account),

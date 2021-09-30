@@ -1,14 +1,14 @@
 <template>
   <div class="card">
     <h5 class="card-header">
-      Test
+      {{ task.name }}
     </h5>
     <div class="card-body">
       <h5 class="card-title">
-        test
+        {{ task.weight }}
       </h5>
       <p class="card-text">
-        Test
+        <input type="checkbox" v-model="task.isComplete" placeholder="Completed?"> Check for yes <br />
       </p>
       <a href="#" class="btn btn-primary">Button</a>
     </div>
@@ -33,7 +33,7 @@ export default {
     const route = useRoute()
     onMounted(async() => {
       try {
-        await tasksService.getTasks(route.params.backlogId)
+        // await tasksService.getTasks(route.params.backlogId)
       } catch (error) {
         Pop.toast('Error grabbing tasks', error)
       }
@@ -52,7 +52,7 @@ export default {
           if (!yes) { return }
           logger.log('This is on the backlog Card', props.task.id)
           // NOTE Supplay all arguments!! and all id's!!! vvv              vvvv
-          await tasksService.removeTask(route.params.projectId, props.task.id)
+          await tasksService.removeTask(route.params.projectId, route.params.backlogId, props.task.id)
           Pop.toast('Deleted', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
