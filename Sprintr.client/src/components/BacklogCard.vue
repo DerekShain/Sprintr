@@ -116,8 +116,9 @@ export default {
     return {
       route,
       account: computed(() => AppState.account),
-      tasks: computed(() => AppState.tasks),
-      task: computed(() => AppState.task.filter(t => t.id === props.backlog.id)),
+      // NOTE vvvvvvvv FILTERING!!!
+      tasks: computed(() => AppState.tasks.filter(task => task.backlogId === props.backlog.id)),
+      task: computed(() => AppState.task),
       notes: computed(() => AppState.notes),
       backlogs: computed(() => AppState.backlogs),
       project: computed(() => AppState.project),
