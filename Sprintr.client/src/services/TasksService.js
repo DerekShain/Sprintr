@@ -30,6 +30,7 @@ class TasksService {
 
   async removeTask(projectId, taskId) {
     await api.delete(`api/projects/${projectId}/tasks/${taskId}`)
+    // NOTE vvv dont forget this to filter everything
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
   }
 
