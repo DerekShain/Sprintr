@@ -9,7 +9,7 @@ export class BacklogItemsController extends BaseController {
       .get('/backlog/:backlogItemId', this.getBacklogItem)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('/backlog', this.createBacklogItem)
-      .put('/backlog/:backlogItemId/', this.editBacklogItem)
+      .put('/backlog/:backlogItemId', this.editBacklogItem)
       .delete('/backlog/:backlogItemId', this.removeBacklogItem)
   }
 
@@ -57,7 +57,8 @@ export class BacklogItemsController extends BaseController {
 
   async editBacklogItem(req, res, next) {
     try {
-      const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.userInfo.id, req.body)
+      req.body.status = req.body.backlog
+      const backlogItem = await backlogItemsService.editBacklogItem(req.params.backlogItemId, req.userInfo.id, req.body.backlog)
       res.send(backlogItem)
     } catch (error) {
       next(error)

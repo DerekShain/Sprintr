@@ -48,7 +48,7 @@
         </li>
         <li class="nav-item justify-content-end mx-1">
           <div v-if="account.id == backlog.creatorId">
-            <select class="selectable" name="backlogs" id="backlogs" @change="editStatus(backlog.id)" v-model="editable">
+            <select class="selectable" name="backlogs" id="backlogs" @change="editStatus(editable)" v-model="editable">
               <option class="selectable">
                 Update Status
               </option>
@@ -186,10 +186,10 @@ export default {
           Pop.toast(error, 'error')
         }
       },
-      async editStatus() {
+      async editStatus(status) {
         try {
           // debugger
-          await backlogsService.editBacklog(route.params.projectId, props.backlog.id)
+          await backlogsService.editBacklog(route.params.projectId, props.backlog.id, status)
         } catch (error) {
           Pop.toast(error, 'error')
         }

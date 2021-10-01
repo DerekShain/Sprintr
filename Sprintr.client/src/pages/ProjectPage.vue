@@ -72,7 +72,7 @@ export default {
       tasksService.getTasks(route.params.backlogId)
       sprintsService.getSprints(route.params.projectId)
       notesService.getNotes(route.params.backlogId)
-      backlogsService.getBacklogs(route.params.backlogId)
+      // backlogsService.getBacklogs(route.params.backlogId)
     }
 
     )

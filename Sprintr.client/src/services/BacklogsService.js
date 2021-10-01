@@ -25,7 +25,7 @@ class BacklogsService {
 
   async editBacklog(projectId, backlogId, backlog) {
     // debugger
-    const res = await api.put(`api/projects/${projectId}/backlog/${backlogId}`, backlog)
+    const res = await api.put(`api/projects/${projectId}/backlog/${backlogId}`, { backlog })
     logger.log('Edit', res)
     // this.getBacklogs(backlog)
   }
