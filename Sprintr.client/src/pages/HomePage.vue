@@ -1,7 +1,8 @@
 <template>
   <div class="home d-flex flex-column align-items-center p-4">
-    <div class="home-card p-2 bg-dark rounded elevation-3 ">
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end ">
+    <div class="home-card p-2 bg-dark rounded elevation-3 text-light text-center">
+      <h4> Welcome. Click create project to get started. </h4>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end align-items-center">
         <button class="btn btn-primary " type="submit" data-bs-toggle="modal" data-bs-target="#project-form">
           Create Project
         </button>
