@@ -23,6 +23,7 @@ import { Project } from '../models/Project'
 import { projectsService } from '../services/ProjectsService'
 
 import Pop from '../utils/Pop'
+import { router } from '../router'
 export default {
   props: {
     project: {
@@ -39,6 +40,7 @@ export default {
           const yes = await Pop.confirm('Are you sure you want to delete?')
           if (!yes) { return }
           await projectsService.deleteProject(props.project.id)
+          router.push({ name: 'Home' })
           Pop.toast('Project has been deleted!', 'success')
         } catch (error) {
           Pop.toast(error, 'error')

@@ -6,27 +6,27 @@
       </div>
       <div class="backlogList"> -->
   <!-- NOTE middle protion -->
-  <!-- <form @submit.prevent="getBacklogById()">
-          <div class="form-group">
-            <label class="pr-2" for="backlog-sprint-select">Select a backlog item</label>
-            <select name="backlogs"
-                    id="backlogs"
-                    required
-                    class="form-control"
-            >
-              <option v-for="b in backlogs"
-                      :key="b.name"
-              >
-                {{ b.name }}
-              </option>
-            </select>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-success mt-3">
-              Submit
-            </button>
-          </div>
-        </form> -->
+  <form @submit.prevent="getBacklogById()">
+    <div class="form-group">
+      <label class="pr-2" for="backlog-sprint-select">Select a backlog item</label>
+      <select name="backlogs"
+              id="backlogs"
+              required
+              class="form-control"
+      >
+        <option v-for="b in backlogs"
+                :key="b.name"
+        >
+          {{ b.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success mt-3">
+        Submit
+      </button>
+    </div>
+  </form>
   <!-- NOTE bottom -->
   <!-- </div>
   <div class="col-6 mt-3">
