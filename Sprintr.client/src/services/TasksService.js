@@ -36,7 +36,6 @@ class TasksService {
 
   async toggleComplete(projectId, taskId) {
     const task = AppState.tasks.find(t => t.id === taskId)
-    logger.log(task)
     // NOTE vvv can use this
     // if (task.isComplete === false) {
     //   task.isComplete = true
@@ -46,6 +45,27 @@ class TasksService {
     // NOTE vvv or line 47. 48 needs to say.
     task.isComplete = !task.isComplete
     await api.put(`api/projects/${projectId}/tasks/${taskId}`, task)
+    logger.log('Complete Toggle Service', task)
+  }
+
+  async toggleNotComplete(projectId, taskId) {
+    const task = AppState.tasks.find(t => t.id === taskId)
+    // NOTE vvv can use this
+    if (task.isComplete === true) {
+      task.isComplete = false
+    } else {
+      task.isComplete = true
+    }
+    // NOTE vvv or line 47. 48 needs to say.
+    // task.isComplete = !task.isComplete
+    await api.put(`api/projects/${projectId}/tasks/${taskId}`, task)
+    logger.log('Complete Toggle Service', task)
+  }
+
+  async checkTask(projectId, taskId, taskData) {
+    const res = await api.put(`api/projects/${projectId}/tasks/${taskId}`, taskData)
+    logger.log('if checkbox', res.data)
+    logger.log('taskData', taskData)
   }
 }
 export const tasksService = new TasksService()
