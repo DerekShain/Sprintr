@@ -8,6 +8,7 @@ export const AppState = reactive({
   projects: [],
   project: [],
   currentProject: {},
+  currentBacklog: {},
   backlogs: [],
   backlog: [],
   sprints: [],

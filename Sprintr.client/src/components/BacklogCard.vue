@@ -46,6 +46,11 @@
             Total Weight: {{ totalWeight }}
           </button>
         </li>
+        <li class="nav-item justify-content-end mx-1">
+          <button class="btn btn-dark text-light" :data-bs-target="'#backlog-form-'+backlog.id" data-bs-toggle="modal">
+            Change Status
+          </button>
+        </li>
       </ul>
     </div>
     <div class="card-body">
@@ -111,6 +116,14 @@
       <NoteForm :backlog="backlog" />
     </template>
   </NoteModal>
+  <UpdateBacklogModal :id="'backlog-form-'+backlog.id">
+    <template #modal-title>
+      <h4>Backlog Form</h4>
+    </template>
+    <template #modal-body>
+      <UpdateBacklogForm />
+    </template>
+  </UpdateBacklogModal>
 </template>
 
 <script>

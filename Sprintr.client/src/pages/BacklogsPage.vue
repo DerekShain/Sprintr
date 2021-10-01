@@ -18,6 +18,14 @@
       <BacklogForm />
     </template>
   </BacklogModal>
+  <UpdateBacklogModal :id="'backlog-form-'+backlog.id">
+    <template #modal-title>
+      <h4>Backlog Form</h4>
+    </template>
+    <template #modal-body>
+      <UpdateBacklogForm />
+    </template>
+  </UpdateBacklogModal>
 </template>
 
 <script>

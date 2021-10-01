@@ -18,12 +18,8 @@ class BacklogItemsService {
     backlogItem.name = backlogItemData.name || backlogItem.name
     backlogItem.description = backlogItemData.description || backlogItem.description
     backlogItem.status = backlogItemData.status || backlogItem.status
-    backlogItem.projectId = backlogItemData.projectId || backlogItem.projectId
     backlogItem.sprintId = backlogItemData.sprintId || backlogItem.sprintId
-    backlogItem.creatorId = backlogItemData.creatorId || backlogItem.creatorId
     backlogItem.color = backlogItemData.color || backlogItem.color
-    backlogItem.taskId = backlogItemData.taskId || backlogItem.task
-    backlogItem.id = backlogItemData.id || backlogItem.id
     await backlogItem.save()
     return backlogItem
   }

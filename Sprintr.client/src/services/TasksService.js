@@ -4,9 +4,9 @@ import { logger } from '../utils/Logger.js'
 import { api } from './AxiosService.js'
 
 class TasksService {
-  async getTasks(projectId, query = '') {
-    AppState.tasks = []
-    const res = await api.get(`api/projects/${projectId}/tasks` + query)
+  async getTasks(projectId) {
+    // AppState.tasks = []
+    const res = await api.get(`api/projects/${projectId}/tasks`)
     AppState.tasks = res.data.map(t => new Task(t))
   }
 
@@ -34,7 +34,7 @@ class TasksService {
     AppState.tasks = AppState.tasks.filter(t => t.id !== taskId)
   }
 
-  async toggleComplete(projectId, taskId) {
+  async toggleComplete(projectId, taskId, tasks) {
     const task = AppState.tasks.find(t => t.id === taskId)
     // NOTE vvv can use this
     // if (task.isComplete === false) {
@@ -44,7 +44,7 @@ class TasksService {
     // }
     // NOTE vvv or line 47. 48 needs to say.
     task.isComplete = !task.isComplete
-    await api.put(`api/projects/${projectId}/tasks/${taskId}`, task)
+    await api.put(`api/projects/${projectId}/tasks/${taskId}`, tasks)
     logger.log('Complete Toggle Service', task)
   }
 
