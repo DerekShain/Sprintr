@@ -23,7 +23,7 @@
         <button class="btn btn-dark text-light" @click="noCompleteTask()">
           Task Not Done
         </button>
-        <input @change="checked()" v-model="editable.isComplete" type="checkbox">Done?
+        <!-- <input @change="checked()" v-model="editable.isComplete" type="checkbox">Done? -->
       </span>
     </div>
   </div>

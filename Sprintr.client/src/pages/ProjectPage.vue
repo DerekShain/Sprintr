@@ -63,6 +63,7 @@ import { projectsService } from '../services/ProjectsService'
 import { tasksService } from '../services/TasksService'
 import { sprintsService } from '../services/SprintsService'
 import { notesService } from '../services/NotesService'
+import { backlogsService } from '../services/BacklogsService'
 export default {
   setup() {
     const route = useRoute()
@@ -71,6 +72,7 @@ export default {
       tasksService.getTasks(route.params.backlogId)
       sprintsService.getSprints(route.params.projectId)
       notesService.getNotes(route.params.backlogId)
+      backlogsService.getBacklogs(route.params.backlogId)
     }
 
     )

@@ -43,6 +43,7 @@ import { ref } from '@vue/reactivity'
 import { sprintsService } from '../services/SprintsService.js'
 import { useRoute } from 'vue-router'
 import { logger } from '../utils/Logger.js'
+import { router } from '../router.js'
 
 export default {
   setup() {

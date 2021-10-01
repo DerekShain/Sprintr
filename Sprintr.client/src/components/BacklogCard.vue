@@ -47,20 +47,38 @@
           </button>
         </li>
         <li class="nav-item justify-content-end mx-1">
-          <button class="btn btn-dark text-light" :data-bs-target="'#backlog-form-'+backlog.id" data-bs-toggle="modal">
-            Change Status
-          </button>
+          <div v-if="account.id == backlog.creatorId">
+            <select class="selectable" name="backlogs" id="backlogs" @change="editStatus($event, backlog.id)" v-model="editable">
+              <option class="selectable">
+                Update Status
+              </option>
+              <option class="selectable">
+                pending
+              </option>
+              <option class="selectable">
+                in-progress
+              </option>
+              <option class="selectable">
+                review
+              </option>
+              <option class="selectable">
+                done
+              </option>
+            </select>
+          </div>
         </li>
       </ul>
     </div>
     <div class="card-body">
-      <h5 class="card-title">
+      <h3 class="card-title">
         {{ backlog.name }}
         <i v-if="account.id == backlog.creatorId" class="mdi mdi-delete-sweep text-secondary selectable ps-3 f-18" aria-hidden="true" title="Delete Backlog" @click="removeBacklog()"></i><br />
-      </h5>
-      <p class="card-text">
-        {{ backlog.status }}
-      </p>
+      </h3>
+
+      <h4 class="card-text">
+        Status: <span class="text-dark">{{ backlog.status }}</span>
+      </h4>
+
       <!-- NOTE These are the dropdowns -->
       <div class="Info p-2">
         <div class="collapse" :id="'collapseExample-'+backlog.id">
@@ -117,23 +135,16 @@
       <NoteForm :backlog="backlog" />
     </template>
   </NoteModal>
-  <UpdateBacklogModal :id="'backlog-form-'+backlog.id">
-    <template #modal-title>
-      <h4>Backlog Form</h4>
-    </template>
-    <template #modal-body>
-      <UpdateBacklogForm />
-    </template>
-  </UpdateBacklogModal>
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, ref } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { backlogsService } from '../services/BacklogsService'
 import Pop from '../utils/Pop'
 import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
+import { Modal } from 'bootstrap'
 export default {
   props: {
     backlog: {
@@ -143,6 +154,7 @@ export default {
   },
   setup(props) {
     const route = useRoute()
+    const editable = ref({})
     return {
       route,
       sprints: computed(() => AppState.sprints),
@@ -173,6 +185,29 @@ export default {
           Pop.toast('Deleted', 'success')
         } catch (error) {
           Pop.toast(error, 'error')
+        }
+      },
+      async editStatus() {
+        try {
+          // debugger
+          await backlogsService.editBacklog(route.params.projectId, props.backlog.id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async tryEdit() {
+        try {
+          if (editable.value.id) {
+            await backlogsService.editBacklog()
+          } else {
+            editable.value.backlogItemId = props.backlog.id
+            await backlogsService.editBacklog(route.params.projectId, props.backlog.id, editable.value)
+          }
+          editable.value = {}
+          Pop.toast('Noice!', 'success')
+        } catch (error) {
+          Pop.toast(error, 'error')
+          logger.log('this is the create note error', error)
         }
       }
     }

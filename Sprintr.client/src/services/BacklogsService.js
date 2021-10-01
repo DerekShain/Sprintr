@@ -23,16 +23,18 @@ class BacklogsService {
     return res.data.id
   }
 
-  async editBacklog(projectId, backlogId) {
+  async editBacklog(projectId, backlogId, backlog) {
     // debugger
-    const res = await api.put(`api/projects/${projectId}/backlog/${backlogId}`)
+    const res = await api.put(`api/projects/${projectId}/backlog/${backlogId}`, backlog)
     logger.log('Edit', res)
-    AppState.backlog = new Backlog(res.data)
+    // this.getBacklogs(backlog)
   }
 
   async removeBacklog(projectId, backlogId) {
+    logger.log(projectId, backlogId)
     const res = await api.delete(`api/projects/${projectId}/backlog/${backlogId}`)
-    AppState.backlogs = res.data
+    logger.log('log the res', res)
+    AppState.backlogs = AppState.backlogs.filter(b => b.id !== backlogId)
   }
 }
 
