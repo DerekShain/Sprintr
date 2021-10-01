@@ -16,9 +16,15 @@
       <h5 class="card-title">
         {{ task.weight }}
       </h5>
-      <button class="btn btn-dark text-light" @click="completeTask()">
-        Have you completed the task?
-      </button>
+      <span><button class="btn btn-dark text-light" @click="completeTask()">
+        Task Done
+      </button></span>
+      <span>
+        <button class="btn btn-dark text-light" @click="noCompleteTask()">
+          Task Not Done
+        </button>
+        <input @change="checked()" v-model="editable.isComplete" type="checkbox">Done?
+      </span>
     </div>
   </div>
 </template>
@@ -71,12 +77,31 @@ export default {
       async completeTask() {
         try {
           // NOTE Supplay all arguments!! and all id's!!! vvv              vvvv
-          await tasksService.toggleComplete(route.params.projectId, props.task.id, route.params.backlogItemId)
+          const res = await tasksService.toggleComplete(route.params.projectId, props.task.id, route.params.backlogItemId)
+          logger.log('Task Complete', res)
         } catch (error) {
           Pop.toast(error, 'error')
           logger.error(error)
         }
+      },
+      async noCompleteTask() {
+        try {
+          // NOTE Supplay all arguments!! and all id's!!! vvv              vvvv
+          const res = await tasksService.toggleNotComplete(route.params.projectId, props.task.id, route.params.backlogItemId)
+          logger.log('Task Complete', res)
+        } catch (error) {
+          Pop.toast(error, 'error')
+          logger.error(error)
+        }
+      },
+      async checked(taskId, isComplete) {
+        try {
+          await tasksService.checkTask(route.params.id, props.task.id, editable.value)
+        } catch (error) {
+          Pop.toast(error.message, 'error')
+        }
       }
+
     }
   }
 }

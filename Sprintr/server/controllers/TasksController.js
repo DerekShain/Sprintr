@@ -38,6 +38,7 @@ export class TasksController extends BaseController {
       req.body.creatorId = req.userInfo.id
       req.body.projectId = req.params.projectId
       req.body.backlogId = req.params.backlogId
+      req.body.taskId = req.params.taskId
       logger.log('who is the user?', req.userInfo)
       req.body.creatorId = req.userInfo.id
       const task = await tasksService.createTask(req.body)
