@@ -4,8 +4,8 @@
       <div class="col-6">
         <h1>Sprint: {{ sprint.name }}</h1>
       </div>
-      <!-- <div class="backlogList">
-        <form @submit.prevent="getBacklogById()">
+      <div class="backlogList">
+        <!-- <form @submit.prevent="getBacklogById()">
           <div class="form-group">
             <label class="pr-2" for="backlog-sprint-select">Select a backlog item</label>
             <select name="backlogs"
@@ -16,7 +16,7 @@
               <option v-for="b in backlogs"
                       :key="b.name"
               >
-                {{ b.name }} {{ b.id }}
+                {{ b.name }}
               </option>
             </select>
           </div>
@@ -25,8 +25,8 @@
               Submit
             </button>
           </div>
-        </form>
-      </div> -->
+        </form> -->
+      </div>
       <div class="col-6 mt-3">
         <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeSprint()" title="Sprint">
           <i class="fa fa-trash text-dark"></i>
