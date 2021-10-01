@@ -48,7 +48,7 @@
         </li>
         <li class="nav-item justify-content-end mx-1">
           <div v-if="account.id == backlog.creatorId">
-            <select class="selectable" name="backlogs" id="backlogs" @change="editStatus($event, backlog.id)" v-model="editable">
+            <select class="selectable" name="backlogs" id="backlogs" @change="editStatus(backlog.id)" v-model="editable">
               <option class="selectable">
                 Update Status
               </option>
@@ -144,7 +144,6 @@ import { backlogsService } from '../services/BacklogsService'
 import Pop from '../utils/Pop'
 import { logger } from '../utils/Logger'
 import { useRoute } from 'vue-router'
-import { Modal } from 'bootstrap'
 export default {
   props: {
     backlog: {
