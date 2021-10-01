@@ -5,7 +5,7 @@
       <input type="text"
              class="form-control"
              maxlength="50"
-             placeholder="Ta Name..."
+             placeholder="Task Name..."
              v-model="editable.name"
              required
       >

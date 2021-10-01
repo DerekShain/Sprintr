@@ -1,11 +1,12 @@
 <template>
-  <div class="col-11 py-5 my-3 ">
+  <!-- <div class="col-11 py-5 my-3 ">
     <div class="row bg-light">
       <div class="col-6">
         <h1>Sprint: {{ sprint.name }}</h1>
       </div>
-      <div class="backlogList">
-        <!-- <form @submit.prevent="getBacklogById()">
+      <div class="backlogList"> -->
+  <!-- NOTE middle protion -->
+  <!-- <form @submit.prevent="getBacklogById()">
           <div class="form-group">
             <label class="pr-2" for="backlog-sprint-select">Select a backlog item</label>
             <select name="backlogs"
@@ -26,13 +27,32 @@
             </button>
           </div>
         </form> -->
-      </div>
-      <div class="col-6 mt-3">
-        <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeSprint()" title="Sprint">
-          <i class="fa fa-trash text-dark"></i>
-          Delete
-        </button>
-      </div>
+  <!-- NOTE bottom -->
+  <!-- </div>
+  <div class="col-6 mt-3">
+    <button class="btn btn-ponk text-dark hoverable mx-2" @click="removeSprint()" title="Sprint">
+      <i class="fa fa-trash text-dark"></i>
+      Delete
+    </button>
+  </div>
+  </div>
+  </div> -->
+
+  <div class="card m-2">
+    <h5 class="card-header text-center">
+      {{ sprint.name }}
+    </h5>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">
+        Scheduled from:
+        <small> {{ new Date(sprint.startDate).toLocaleDateString() }}</small>-
+        <small>{{ new Date(sprint.endDate).toLocaleDateString() }} </small>
+      </p>
+      <button class="btn btn-dark text-light hoverable mx-2" @click="removeSprint()" title="Sprint">
+        <i class="mdi mdi-delete text-light"></i>
+        Delete
+      </button>
     </div>
   </div>
 </template>

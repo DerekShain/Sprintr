@@ -20,6 +20,7 @@ class BacklogsService {
     const res = await api.post(`api/projects/${projectId}/backlog`, backlog)
     AppState.backlogs.push(new Backlog(res.data, projectId))
     logger.log('create backlog res', res)
+
     return res.data.id
   }
 
@@ -27,14 +28,14 @@ class BacklogsService {
     // debugger
     const res = await api.put(`api/projects/${projectId}/backlog/${backlogId}`, { backlog })
     logger.log('Edit', res)
-    // this.getBacklogs(backlog)
+    // AppState.backlogs = AppState.backlogs.filter(b => b.id !== backlogId)
   }
 
   async removeBacklog(projectId, backlogId) {
     logger.log(projectId, backlogId)
     const res = await api.delete(`api/projects/${projectId}/backlog/${backlogId}`)
     logger.log('log the res', res)
-    AppState.backlogs = AppState.backlogs.filter(b => b.id !== backlogId)
+    AppState.backlogs = AppState.backlogs.map(b => b.id !== backlogId)
   }
 }
 
