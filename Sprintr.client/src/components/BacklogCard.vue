@@ -89,6 +89,7 @@
                   {{ s.name }}
                 </option>
               </select>
+              <i v-if="account.id == backlog.creatorId" class="mdi mdi-circle-edit-outline text-secondary selectable ps-3 f-18" aria-hidden="true" title="Edit Backlog" @submit.prevent="editBacklog()"></i><br />
             </div>
           </div>
         </div>
